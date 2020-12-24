@@ -11,6 +11,13 @@ defmodule BattleCity.GameCallback do
 
   @optional_callbacks [handle_tick: 1, handle_event: 2]
 
+  defmacro __using__(_) do
+    quote do
+      @behaviour unquote(__MODULE__)
+      alias BattleCity.Context
+    end
+  end
+
   def module do
     Config.get(:callback_module, nil)
   end
