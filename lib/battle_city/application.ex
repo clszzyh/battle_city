@@ -7,7 +7,7 @@ defmodule BattleCity.Application do
   alias BattleCity.Process
 
   def start(_type, _args) do
-    if Code.ensure_loaded?(:telemetry) and Config.get(:telemetry_logger) do
+    if Config.get(:telemetry_logger) do
       :ok = BattleCity.Telemetry.attach_default_logger(Config.get(:telemetry_logger_level))
     end
 

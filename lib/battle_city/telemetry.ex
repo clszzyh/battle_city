@@ -14,27 +14,14 @@ defmodule BattleCity.Telemetry do
             ]
           end)
 
-  if Code.ensure_loaded?(:telemetry) do
-    @spec attach_default_logger(Logger.level()) :: :ok | {:error, :already_exists}
-    def attach_default_logger(level \\ :info) do
-      :telemetry.attach_many(@handler_id, @events, &handle_event/4, level)
-    end
+  @spec attach_default_logger(Logger.level()) :: :ok | {:error, :already_exists}
+  def attach_default_logger(level \\ :info) do
+    :telemetry.attach_many(@handler_id, @events, &handle_event/4, level)
+  end
 
-    @spec span(name :: atom(), fun :: (() -> {term(), map()}), meta :: map()) :: term()
-    def span(name, fun, meta \\ %{}) when is_atom(name) and is_function(fun, 0) do
-      :telemetry.span([@prefix, name], meta, fun)
-    end
-  else
-    @spec attach_default_logger(Logger.level()) :: :ok | {:error, :already_exists}
-    def attach_default_logger(_level \\ :info) do
-      :ok
-    end
-
-    @spec span(name :: atom(), fun :: (() -> {term(), map()}), meta :: map()) :: term()
-    def span(name, fun, _meta \\ %{}) when is_atom(name) and is_function(fun, 0) do
-      {result, _meta} = fun.()
-      result
-    end
+  @spec span(name :: atom(), fun :: (() -> {term(), map()}), meta :: map()) :: term()
+  def span(name, fun, meta \\ %{}) when is_atom(name) and is_function(fun, 0) do
+    :telemetry.span([@prefix, name], meta, fun)
   end
 
   @spec handle_event([atom()], map(), map(), Logger.level()) :: :ok
