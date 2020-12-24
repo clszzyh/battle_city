@@ -5,6 +5,8 @@ alias BattleCity.Tank
 alias BattleCity.Environment
 alias BattleCity.Bullet
 alias BattleCity.Context
+alias BattleCity.Config
+alias BattleCity.Telemetry
 alias BattleCity.Game
 alias BattleCity.Utils
 alias BattleCity.Business

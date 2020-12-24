@@ -1,0 +1,20 @@
+{
+  "name": "0",
+  "difficulty": 1,
+  "map": [
+    "X X X X X X X X X X X X X",
+    "X X X X X X X X X X X X X",
+    "X X X X X X X X X X X X X",
+    "X X X X X X X X X X X X X",
+    "X X X X X X X X X X X X X",
+    "X X X X X X X X X X X X X",
+    "X X X X X X X X X X X X X",
+    "X X X X X X X X X X X X X",
+    "X X X X X X X X X X X X X",
+    "X X X X X X X X X X X X X",
+    "X X X X X X X X X X X X X",
+    "X X X X X X X X X X X X X",
+    "X X X X X X E X X X X X X"
+  ],
+  "bots": ["18*basic", "2*fast"]
+}
