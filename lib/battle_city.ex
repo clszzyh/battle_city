@@ -1,4 +1,4 @@
-defmodule BattleCityCore do
+defmodule BattleCity do
   @external_resource readme = Path.join([__DIR__, "../README.md"])
 
   @moduledoc readme

@@ -1,8 +1,8 @@
-defmodule BattleCityCore.MixProject do
+defmodule BattleCity.MixProject do
   use Mix.Project
 
   @version "VERSION" |> File.read!() |> String.trim()
-  @github_url "https://github.com/clszzyh/battle_city_core"
+  @github_url "https://github.com/clszzyh/battle_city"
   @description "README.md"
                |> File.read!()
                |> String.split("<!-- MDOC -->")
@@ -11,7 +11,7 @@ defmodule BattleCityCore.MixProject do
 
   def project do
     [
-      app: :battle_city_core,
+      app: :battle_city,
       version: @version,
       description: @description,
       elixir: "~> 1.11",
