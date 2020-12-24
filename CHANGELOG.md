@@ -1,8 +1,8 @@
 # Changelog
 
-## [v0.1.1](https://github.com/clszzyh/battle_city/tree/v0.1.1) (2020-12-24)
+## [v0.1.2](https://github.com/clszzyh/battle_city/tree/v0.1.2) (2020-12-24)
 
-[Full Changelog](https://github.com/clszzyh/battle_city/compare/0f74c3463e919820872f018fbe230c9567043163...v0.1.1)
+[Full Changelog](https://github.com/clszzyh/battle_city/compare/0f74c3463e919820872f018fbe230c9567043163...v0.1.2)
 
 
 
