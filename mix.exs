@@ -69,6 +69,7 @@ defmodule BattleCity.MixProject do
   # Run "mix help deps" to learn about dependencies.
   defp deps do
     [
+      {:jason, "~> 1.0"},
       {:telemetry, "~> 0.4.0"},
       {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
       {:credo, "~> 1.4", only: [:dev, :test], runtime: false},

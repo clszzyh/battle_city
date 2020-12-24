@@ -1,10 +1,7 @@
 defmodule BattleCity do
   @external_resource readme = Path.join([__DIR__, "../README.md"])
 
-  @moduledoc readme
-             |> File.read!()
-             |> String.split("<!-- MDOC -->")
-             |> Enum.fetch!(2)
+  @moduledoc readme |> File.read!() |> String.split("<!-- MDOC -->") |> Enum.fetch!(2)
 
   # alias BattleCity.Bullet
   alias BattleCity.Context
