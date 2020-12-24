@@ -11,6 +11,10 @@ Battle City Core.
 
 <!-- MDOC -->
 
+Moduledoc here
+
+<!-- MDOC -->
+
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed

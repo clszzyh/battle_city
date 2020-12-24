@@ -1,18 +1,11 @@
 defmodule BattleCityCore do
-  @moduledoc """
-  Documentation for `BattleCityCore`.
-  """
+  @external_resource readme = Path.join([__DIR__, "../README.md"])
 
-  @doc """
-  Hello world.
+  @moduledoc readme
+             |> File.read!()
+             |> String.split("<!-- MDOC -->")
+             |> Enum.fetch!(2)
 
-  ## Examples
-
-      iex> BattleCityCore.hello()
-      :world
-
-  """
-  def hello do
-    :world
-  end
+  @version Mix.Project.config()[:version]
+  def version, do: @version
 end
