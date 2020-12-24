@@ -1,5 +1,17 @@
 # Changelog
 
+## [Unreleased](https://github.com/clszzyh/battle_city/tree/HEAD)
+
+[Full Changelog](https://github.com/clszzyh/battle_city/compare/v0.1.4...HEAD)
+
+**Closed issues:**
+
+- \[CI FAIL\] using \[Fixed by using\] [\#2](https://github.com/clszzyh/battle_city/issues/2)
+
+## [v0.1.4](https://github.com/clszzyh/battle_city/tree/v0.1.4) (2020-12-24)
+
+[Full Changelog](https://github.com/clszzyh/battle_city/compare/v0.1.3...v0.1.4)
+
 ## [v0.1.3](https://github.com/clszzyh/battle_city/tree/v0.1.3) (2020-12-24)
 
 [Full Changelog](https://github.com/clszzyh/battle_city/compare/v0.1.2...v0.1.3)
