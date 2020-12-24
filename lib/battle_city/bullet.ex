@@ -3,8 +3,8 @@ defmodule BattleCity.Bullet do
   Bullet
   """
 
-  alias BattleCity.Callback
   alias BattleCity.Context
+  alias BattleCity.ContextCallback
   alias BattleCity.Environment
   alias BattleCity.Position
 
@@ -14,7 +14,7 @@ defmodule BattleCity.Bullet do
           speed: Position.speed(),
           position: Position.t(),
           id: BattleCity.id(),
-          __callbacks__: [Callback.t()],
+          __callbacks__: [ContextCallback.t()],
           tank_id: BattleCity.id(),
           reason: BattleCity.reason(),
           power: power,
@@ -37,7 +37,7 @@ defmodule BattleCity.Bullet do
     dead?: false
   ]
 
-  use BattleCity.Callback
+  use BattleCity.ContextCallback
 
   @impl true
   def handle_callback(%{action: :delete}, %__MODULE__{tank_id: id}, _) do

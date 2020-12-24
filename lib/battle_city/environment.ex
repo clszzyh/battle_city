@@ -4,7 +4,7 @@ defmodule BattleCity.Environment do
   """
 
   alias BattleCity.Bullet
-  alias BattleCity.Callback
+  alias BattleCity.ContextCallback
   alias BattleCity.Position
   alias BattleCity.Tank
 
@@ -76,7 +76,7 @@ defmodule BattleCity.Environment do
         %Bullet{__callbacks__: callbacks} = bullet
       )
       when health > 0 do
-    callback = %Callback{
+    callback = %ContextCallback{
       action: :damage_environment,
       value: %{x: p.x, y: p.y, power: bullet.power}
     }

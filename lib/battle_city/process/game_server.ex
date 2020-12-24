@@ -19,7 +19,7 @@ defmodule BattleCity.Process.GameServer do
   @impl true
   def init({slug, opts}) do
     ctx = Game.init(slug, opts)
-    :ok = Game.play_audio(ctx, "start")
+    ctx = Game.handle_event(ctx, "start")
     {:ok, ctx, {:continue, :loop}}
   end
 
@@ -126,8 +126,8 @@ defmodule BattleCity.Process.GameServer do
 
   defp pause(%{state: :started} = ctx) do
     ctx = %{ctx | state: :paused}
+    ctx = Game.handle_event(ctx, "pause")
     Logger.info("[#{ctx.slug}] Pause")
-    :ok = Game.play_audio(ctx, "pause")
     {:reply, {:ok, ctx}, ctx, ctx.timeout_interval}
   end
 
@@ -135,8 +135,8 @@ defmodule BattleCity.Process.GameServer do
 
   defp resume(%{state: :paused} = ctx) do
     ctx = %{ctx | state: :started}
+    ctx = Game.handle_event(ctx, "pause")
     Logger.info("[#{ctx.slug}] Resume")
-    :ok = Game.play_audio(ctx, "pause")
     _ = do_loop(ctx)
     {:reply, {:ok, ctx}, ctx, {:continue, :refresh_tanks}}
   end

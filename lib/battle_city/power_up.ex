@@ -3,9 +3,9 @@ defmodule BattleCity.PowerUp do
   PowerUp
   """
 
-  alias BattleCity.Callback
   alias BattleCity.Config
   alias BattleCity.Context
+  alias BattleCity.ContextCallback
   alias BattleCity.Position
   alias BattleCity.Tank
 
@@ -16,7 +16,7 @@ defmodule BattleCity.PowerUp do
           id: BattleCity.id(),
           duration: duration(),
           position: Position.t(),
-          __callbacks__: [Callback.t()]
+          __callbacks__: [ContextCallback.t()]
         }
 
   @enforce_keys []
@@ -58,7 +58,7 @@ defmodule BattleCity.PowerUp do
     end
   end
 
-  use BattleCity.Callback
+  use BattleCity.ContextCallback
 
   @impl true
   def handle_callback(_, _, ctx), do: ctx

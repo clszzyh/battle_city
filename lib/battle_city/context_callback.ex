@@ -1,6 +1,6 @@
-defmodule BattleCity.Callback do
+defmodule BattleCity.ContextCallback do
   @moduledoc """
-  Callback
+  ContextCallback
   """
 
   alias BattleCity.Bullet

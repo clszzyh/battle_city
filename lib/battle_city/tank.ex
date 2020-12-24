@@ -5,9 +5,9 @@ defmodule BattleCity.Tank do
 
   alias BattleCity.Bullet
   alias BattleCity.Business.Generate
-  alias BattleCity.Callback
   alias BattleCity.Config
   alias BattleCity.Context
+  alias BattleCity.ContextCallback
   alias BattleCity.Position
   alias BattleCity.Process.GameSupervisor
   alias __MODULE__
@@ -85,7 +85,7 @@ defmodule BattleCity.Tank do
           __module__: module(),
           meta: Base.t(),
           id: BattleCity.id(),
-          __callbacks__: [Callback.t()],
+          __callbacks__: [ContextCallback.t()],
           position: Position.t(),
           speed: Position.speed(),
           lifes: integer(),
@@ -125,7 +125,7 @@ defmodule BattleCity.Tank do
     lifes: Config.get(:life_count)
   ]
 
-  use BattleCity.Callback
+  use BattleCity.ContextCallback
 
   @ai_modules [BattleCity.Ai.Simple, BattleCity.Ai.FindHome]
 

@@ -14,4 +14,8 @@ defmodule BattleCity.Config do
   def get(key) when key in @config_keys do
     Application.get_env(:battle_city, key, Map.fetch!(@default_map, key))
   end
+
+  def get(key, default) do
+    Application.get_env(:battle_city, key, default)
+  end
 end

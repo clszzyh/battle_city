@@ -4,8 +4,8 @@ defmodule BattleCity.Context do
   """
 
   alias BattleCity.Bullet
-  alias BattleCity.Callback
   alias BattleCity.Config
+  alias BattleCity.ContextCallback
   alias BattleCity.Event
   alias BattleCity.Position
   alias BattleCity.PowerUp
@@ -167,11 +167,11 @@ defmodule BattleCity.Context do
     ctx |> handle_actions(o, o.__callbacks__) |> handle_object(%{o | __callbacks__: []})
   end
 
-  @spec handle_actions(t(), object_struct, [Callback.t()]) :: t()
+  @spec handle_actions(t(), object_struct, [ContextCallback.t()]) :: t()
   def handle_actions(ctx, _, []), do: ctx
 
   def handle_actions(ctx, o, [a | rest]) do
-    ctx = Callback.handle(a, o, ctx)
+    ctx = ContextCallback.handle(a, o, ctx)
     handle_actions(ctx, o, rest)
   end
 
@@ -202,7 +202,7 @@ defmodule BattleCity.Context do
     {{old_x, old_y}, action} =
       if old, do: {{old.position.x, old.position.y}, :update}, else: {{x, y}, :create}
 
-    %{objects: objects} = ctx = Callback.handle(%Callback{action: action}, o, ctx)
+    %{objects: objects} = ctx = ContextCallback.handle(%ContextCallback{action: action}, o, ctx)
     # IO.puts("#{action} #{ctx.slug} #{key} #{id} {#{x}, #{y}}")
 
     {fingerprint, fingerprint_value} = Object.fingerprint(o)
@@ -256,7 +256,11 @@ defmodule BattleCity.Context do
   def delete_object(ctx, key, id) when key in @object_values do
     %{objects: objects} =
       ctx =
-      Callback.handle(%Callback{action: :delete}, ctx |> Map.fetch!(key) |> Map.fetch!(id), ctx)
+      ContextCallback.handle(
+        %ContextCallback{action: :delete},
+        ctx |> Map.fetch!(key) |> Map.fetch!(id),
+        ctx
+      )
 
     data = ctx |> Map.fetch!(key)
     {o, data} = Map.pop!(data, id)

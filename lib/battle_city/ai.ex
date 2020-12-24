@@ -1,5 +1,7 @@
 defmodule BattleCity.Ai do
-  @moduledoc false
+  @moduledoc """
+  Ai
+  """
 
   alias BattleCity.Context
   alias BattleCity.Event

@@ -1,5 +1,7 @@
 defmodule BattleCity.Game do
-  @moduledoc false
+  @moduledoc """
+  Game
+  """
 
   alias BattleCity.Ai
   alias BattleCity.Business.Generate
@@ -7,6 +9,7 @@ defmodule BattleCity.Game do
   alias BattleCity.Business.Overlap
   alias BattleCity.Context
   alias BattleCity.Event
+  alias BattleCity.GameCallback
   alias BattleCity.Process.GameDynamicSupervisor
   alias BattleCity.Process.GameServer
   alias BattleCity.Process.ProcessRegistry
@@ -14,7 +17,6 @@ defmodule BattleCity.Game do
   alias BattleCity.Process.TankServer
   alias BattleCity.Tank
   alias BattleCity.Telemetry
-  # alias BattleCityWeb.Presence
   require Logger
 
   if Mix.env() == :dev do
@@ -165,16 +167,10 @@ defmodule BattleCity.Game do
   end
 
   @spec broadcast(Context.t()) :: Context.t()
-  defp broadcast(%Context{} = ctx) do
-    # _ = Presence.broadcast_slug(ctx.slug, "ctx", ctx)
-    ctx
-  end
+  defp broadcast(%Context{} = ctx), do: GameCallback.tick(ctx)
 
-  @spec play_audio(Context.t(), binary()) :: :ok
-  def play_audio(_ctx, _id) do
-    # :ok = Presence.broadcast_slug(ctx.slug, "play_audio", id)
-    :ok
-  end
+  @spec handle_event(Context.t(), term()) :: Context.t()
+  def handle_event(ctx, id), do: GameCallback.event(ctx, id)
 
   def list do
     games = ProcessRegistry.search(GameServer)
