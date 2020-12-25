@@ -7,7 +7,10 @@ defmodule BattleCity.Compile do
   alias BattleCity.Utils
   require Logger
 
-  @stage_path Application.app_dir(:battle_city, "priv/stages/*.json")
+  @stage_path Application.app_dir(
+                :battle_city,
+                if(Mix.env() == :dev, do: "priv/stages/[01].json", else: "priv/stages/*.json")
+              )
 
   @bot_map %{
     "fast" => Tank.Fast,
@@ -120,8 +123,20 @@ defmodule BattleCity.Compile do
       :code.delete(module_name)
     end
 
+    doc = """
+    Stage: #{name}
+    Difficulty: #{difficulty}
+    Bots: #{inspect(bots)}
+
+    ----
+    #{Enum.join(map, "\n")}
+    ----
+
+    """
+
     ast =
       quote location: :keep do
+        @moduledoc unquote(doc)
         use BattleCity.Stage,
           name: unquote(name),
           difficulty: unquote(difficulty),
