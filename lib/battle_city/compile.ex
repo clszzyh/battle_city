@@ -13,6 +13,8 @@ defmodule BattleCity.Compile do
     @stage_regex "[01].json"
   end
 
+  IO.puts("#{Mix.env()} -> #{@stage_regex}")
+
   @stage_path Path.join(:code.priv_dir(:battle_city), "stages/" <> @stage_regex)
 
   @bot_map %{
