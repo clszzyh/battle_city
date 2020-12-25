@@ -1,11 +1,13 @@
 # Changelog
 
-## [Unreleased](https://github.com/clszzyh/battle_city/tree/HEAD)
+## [v0.1.5](https://github.com/clszzyh/battle_city/tree/v0.1.5) (2020-12-25)
 
-[Full Changelog](https://github.com/clszzyh/battle_city/compare/v0.1.4...HEAD)
+[Full Changelog](https://github.com/clszzyh/battle_city/compare/v0.1.4...v0.1.5)
 
 **Closed issues:**
 
+- \[CI FAIL\] ci \[Fixed by compile stage\] [\#4](https://github.com/clszzyh/battle_city/issues/4)
+- \[CI FAIL\] remove compile \[Fixed by compile stage\] [\#3](https://github.com/clszzyh/battle_city/issues/3)
 - \[CI FAIL\] using \[Fixed by using\] [\#2](https://github.com/clszzyh/battle_city/issues/2)
 
 ## [v0.1.4](https://github.com/clszzyh/battle_city/tree/v0.1.4) (2020-12-24)
