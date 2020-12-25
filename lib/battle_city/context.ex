@@ -82,15 +82,15 @@ defmodule BattleCity.Context do
 
   @spec grid(grid_struct) :: grid
   def grid(%Environment{position: p, __module__: module}) do
-    %{type: :e, kind: module.__name__(), x: p.x, y: p.y}
+    %{type: :e, kind: module.__name__(), x: p.rx, y: p.ry}
   end
 
   def grid(%Tank{position: p, __module__: module}) do
-    %{type: :t, kind: module.__name__(), x: p.x, y: p.y, d: p.direction}
+    %{type: :t, kind: module.__name__(), x: p.rx, y: p.ry, d: p.direction}
   end
 
   def grid(%Bullet{position: p}) do
-    %{type: :b, x: p.x, y: p.y, d: p.direction}
+    %{type: :b, x: p.rx, y: p.ry, d: p.direction}
   end
 
   @spec grids(t()) :: [grid]

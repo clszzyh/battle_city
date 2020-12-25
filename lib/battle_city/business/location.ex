@@ -10,7 +10,7 @@ defmodule BattleCity.Business.Location do
   import BattleCity.Position, only: [is_on_border: 1]
   require Logger
 
-  @typep move_struct :: Environment.object()
+  @typep move_struct :: Environment.env_object()
 
   @spec move_all(Context.t()) :: Context.t()
   def move_all(%Context{} = ctx) do

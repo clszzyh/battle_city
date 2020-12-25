@@ -10,8 +10,8 @@ defmodule BattleCity.Environment do
 
   @typep health :: integer() | :infinite
   @typep shape :: nil | binary()
-  @type object :: Tank.t() | Bullet.t()
-  @typep enter_result :: {:error, BattleCity.reason()} | {:ok, object}
+  @type env_object :: Tank.t() | Bullet.t()
+  @typep enter_result :: {:error, BattleCity.reason()} | {:ok, env_object}
 
   @type t :: %__MODULE__{
           __module__: module(),
@@ -36,8 +36,8 @@ defmodule BattleCity.Environment do
 
   use BattleCity.StructCollect
 
-  @callback handle_enter(t(), object) :: enter_result
-  @callback handle_leave(t(), object) :: enter_result
+  @callback handle_enter(t(), env_object) :: enter_result
+  @callback handle_leave(t(), env_object) :: enter_result
 
   defmacro __using__(opt \\ []) do
     obj = struct(__MODULE__, opt)
@@ -52,12 +52,12 @@ defmodule BattleCity.Environment do
     end
   end
 
-  @spec copy_rxy(t(), object) :: object
+  @spec copy_rxy(t(), env_object) :: env_object
   def copy_rxy(%{position: %{rx: rx, ry: ry}}, %{position: position} = o) do
     %{o | position: %{position | rx: rx, ry: ry, path: []}}
   end
 
-  @spec copy_xy(t(), object) :: object
+  @spec copy_xy(t(), env_object) :: env_object
   def copy_xy(
         %{position: %{x: x, y: y}},
         %{position: %{path: [_ | rest]} = position} = o
@@ -65,7 +65,7 @@ defmodule BattleCity.Environment do
     %{o | position: %{position | x: x, y: y, path: rest}}
   end
 
-  @spec enter(t(), object) :: enter_result
+  @spec enter(t(), env_object) :: enter_result
   def enter(%__MODULE__{enter?: false}, %Tank{}), do: {:error, :forbidden}
 
   def enter(%__MODULE__{enter?: false, health: :infinite}, %Bullet{} = bullet),
@@ -88,7 +88,7 @@ defmodule BattleCity.Environment do
     module.handle_enter(environment, o)
   end
 
-  @spec leave(t(), object) :: enter_result
+  @spec leave(t(), env_object) :: enter_result
   def leave(%__MODULE__{__module__: module} = environment, o) do
     module.handle_leave(environment, o)
   end
