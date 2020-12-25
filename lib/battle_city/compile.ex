@@ -8,10 +8,12 @@ defmodule BattleCity.Compile do
   require Logger
 
   if Mix.env() == :prod do
-    @stage_path "priv/stages/*.json"
+    @stage_regex "*.json"
   else
-    @stage_path "priv/stages/[01].json"
+    @stage_regex "[01].json"
   end
+
+  @stage_path Path.join(:code.priv_dir(:battle_city), "stages/" <> @stage_regex)
 
   @bot_map %{
     "fast" => Tank.Fast,
