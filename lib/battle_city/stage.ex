@@ -31,7 +31,7 @@ defmodule BattleCity.Stage do
 
   use BattleCity.StructCollect
 
-  @callback name :: binary()
+  @callback name :: integer()
 
   defmacro __using__(opt) do
     # raw = Keyword.fetch!(opt, :map)

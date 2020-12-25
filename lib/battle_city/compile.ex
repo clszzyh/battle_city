@@ -7,15 +7,7 @@ defmodule BattleCity.Compile do
   alias BattleCity.Utils
   require Logger
 
-  if Mix.env() == :prod do
-    @stage_regex "*.json"
-  else
-    @stage_regex "[01].json"
-  end
-
-  IO.puts("#{Mix.env()} -> #{@stage_regex}")
-
-  @stage_path Path.join(:code.priv_dir(:battle_city), "stages/" <> @stage_regex)
+  @stage_path Path.join(:code.priv_dir(:battle_city), "stages/*.json")
 
   @bot_map %{
     "fast" => Tank.Fast,
@@ -62,7 +54,7 @@ defmodule BattleCity.Compile do
 
   @after_compile __MODULE__
   def __after_compile__(_env, _bytecode) do
-    # compile_stage!()
+    compile_stage!()
   end
 
   def validate_stage!(%{map: map, bots: bots} = o) do
@@ -124,7 +116,6 @@ defmodule BattleCity.Compile do
     module_name = Module.concat(BattleCity.Stage, "S#{name}")
 
     if Utils.defined?(module_name) do
-      Logger.debug("Delete module: #{module_name}")
       :code.purge(module_name)
       :code.delete(module_name)
     end
@@ -140,8 +131,6 @@ defmodule BattleCity.Compile do
 
     {:module, final_module, _byte_code, _} =
       Module.create(module_name, ast, Macro.Env.location(__ENV__))
-
-    Logger.debug("Create module: #{final_module}")
 
     final_module
   end

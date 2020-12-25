@@ -11,8 +11,6 @@ defmodule BattleCity.Application do
       :ok = BattleCity.Telemetry.attach_default_logger(Config.get(:telemetry_logger_level))
     end
 
-    # _ = BattleCity.Compile.compile_stage!()
-
     {:ok, _pid} =
       Supervisor.start_link(
         [
