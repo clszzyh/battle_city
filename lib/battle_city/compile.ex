@@ -7,7 +7,7 @@ defmodule BattleCity.Compile do
   alias BattleCity.Utils
   require Logger
 
-  @stage_path Path.join(:code.priv_dir(:battle_city), "stages/*.json")
+  @stage_path Application.app_dir(:battle_city, "priv/stages/*.json")
 
   @bot_map %{
     "fast" => Tank.Fast,
