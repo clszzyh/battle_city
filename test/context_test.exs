@@ -12,6 +12,7 @@ defmodule BattleCity.ContextTest do
   alias BattleCity.Utils
 
   setup_all do
+    _ = BattleCity.Compile.compile_stage!()
     slug = Utils.random()
     ctx = Game.init(slug)
     player = ctx.tanks |> Map.values() |> Enum.find(&match?(%{enemy?: false}, &1))

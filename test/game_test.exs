@@ -13,6 +13,7 @@ defmodule BattleCity.GameTest do
   @moduletag :game
 
   setup_all do
+    _ = BattleCity.Compile.compile_stage!()
     []
   end
 
