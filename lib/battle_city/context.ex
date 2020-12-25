@@ -25,8 +25,8 @@ defmodule BattleCity.Context do
            required(:type) => BattleCity.short_type(),
            required(:x) => integer(),
            required(:y) => integer(),
-           optional(:kind) => atom(),
-           optional(:d) => Position.direction()
+           required(:d) => atom() | binary(),
+           optional(:kind) => atom()
          }
 
   @object_struct_map %{PowerUp => :power_ups, Tank => :tanks, Bullet => :bullets}
@@ -81,8 +81,8 @@ defmodule BattleCity.Context do
               ]
 
   @spec grid(grid_struct) :: grid
-  def grid(%Environment{position: p, __module__: module}) do
-    %{type: :e, kind: module.__name__(), x: p.rx, y: p.ry}
+  def grid(%Environment{position: p, shape: shape, __module__: module}) do
+    %{type: :e, kind: module.__name__(), x: p.rx, y: p.ry, d: shape}
   end
 
   def grid(%Tank{position: p, __module__: module}) do
