@@ -70,6 +70,7 @@ defmodule BattleCity.MixProject do
   def application do
     [
       mod: {BattleCity.Application, []},
+      env: [telemetry_logger: false],
       extra_applications: [:logger]
     ]
   end

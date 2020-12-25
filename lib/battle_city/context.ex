@@ -6,6 +6,7 @@ defmodule BattleCity.Context do
   alias BattleCity.Bullet
   alias BattleCity.Config
   alias BattleCity.ContextCallback
+  alias BattleCity.Environment
   alias BattleCity.Event
   alias BattleCity.Position
   alias BattleCity.PowerUp
@@ -16,8 +17,17 @@ defmodule BattleCity.Context do
 
   @type callback_fn :: (t() -> t())
   @typep state :: :started | :paused | :game_over | :complete
+  @typep grid_struct :: PowerUp.t() | Tank.t() | Bullet.t() | Environment.t()
   @type object_struct :: PowerUp.t() | Tank.t() | Bullet.t() | nil
   @typep update_raw_fun :: (object_struct -> {object_struct, object_struct})
+
+  @typep grid :: %{
+           required(:type) => BattleCity.short_type(),
+           required(:x) => integer(),
+           required(:y) => integer(),
+           optional(:kind) => atom(),
+           optional(:d) => Position.direction()
+         }
 
   @object_struct_map %{PowerUp => :power_ups, Tank => :tanks, Bullet => :bullets}
   @object_values Map.values(@object_struct_map)
@@ -70,14 +80,27 @@ defmodule BattleCity.Context do
                 shovel?: false
               ]
 
-  @spec grids(t()) :: [Html.t()]
+  @spec grid(grid_struct) :: grid
+  def grid(%Environment{position: p, __module__: module}) do
+    %{type: :e, kind: module.__name__(), x: p.x, y: p.y}
+  end
+
+  def grid(%Tank{position: p, __module__: module}) do
+    %{type: :t, kind: module.__name__(), x: p.x, y: p.y, d: p.direction}
+  end
+
+  def grid(%Bullet{position: p}) do
+    %{type: :b, x: p.x, y: p.y, d: p.direction}
+  end
+
+  @spec grids(t()) :: [grid]
   def grids(%__MODULE__{} = ctx) do
     map_grids(ctx) ++ object_grids(ctx)
   end
 
-  @spec map_grids(t()) :: [Html.t()]
+  @spec map_grids(t()) :: [grid]
   def map_grids(%__MODULE__{stage: %{map: map}}) do
-    for {_k, o} <- map, do: Html.grid(o)
+    for {_k, o} <- map, do: grid(o)
   end
 
   def non_empty_objects(%__MODULE__{objects: objects}) do
@@ -88,12 +111,12 @@ defmodule BattleCity.Context do
     end
   end
 
-  @spec tank_grids(t()) :: [Html.t()]
+  @spec tank_grids(t()) :: [grid]
   def tank_grids(ctx), do: object_grids(ctx, [:t])
-  @spec bullet_grids(t()) :: [Html.t()]
+  @spec bullet_grids(t()) :: [grid]
   def bullet_grids(ctx), do: object_grids(ctx, [:b])
 
-  @spec object_grids(t(), nil | [BattleCity.short_type()]) :: [Html.t()]
+  @spec object_grids(t(), nil | [BattleCity.short_type()]) :: [grid]
   def object_grids(%__MODULE__{objects: objects} = ctx, types \\ nil) do
     types = types || [:b, :t]
 
@@ -102,7 +125,7 @@ defmodule BattleCity.Context do
         o =
           for {%{type: t, id: id}, _} <- mapset,
               t in types,
-              do: fetch_object!(ctx, t, id) |> Html.grid()
+              do: fetch_object!(ctx, t, id) |> grid()
 
         ary ++ o
     end
