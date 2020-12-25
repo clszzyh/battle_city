@@ -5,7 +5,7 @@ defmodule BattleCity.Config do
     life_count: 3,
     rest_enemies: 20,
     power_up_duration: 10,
-    telemetry_logger: false,
+    telemetry_logger: true,
     telemetry_logger_level: :debug
   }
 
