@@ -18,7 +18,15 @@ defmodule BattleCity.MixProject do
       elixirc_options: [warnings_as_errors: System.get_env("CI") == "true"],
       package: [
         licenses: ["MIT"],
-        files: ["lib", ".formatter.exs", "mix.exs", "README*", "CHANGELOG*", "VERSION"],
+        files: [
+          "lib",
+          ".formatter.exs",
+          "mix.exs",
+          "README*",
+          "CHANGELOG*",
+          "VERSION",
+          "priv/stages"
+        ],
         exclude_patterns: ["priv/plts", ".DS_Store"],
         links: %{
           "GitHub" => @github_url,
