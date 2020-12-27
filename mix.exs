@@ -3,7 +3,7 @@ defmodule BattleCity.MixProject do
 
   @version String.trim(File.read!("VERSION"))
   @github_url "https://github.com/clszzyh/battle_city"
-  @description String.trim(Enum.fetch!(String.split(File.read!("README.md"), "<!-- MDOC -->"), 1))
+  @description String.trim(Enum.at(String.split(File.read!("README.md"), "<!-- MDOC -->"), 1, ""))
 
   def project do
     [
