@@ -325,7 +325,6 @@ jobs:
 
   release:
     name: Release and publish
-    needs: [build]
     if: contains(github.ref, 'tags/v')
     runs-on: ubuntu-latest
     strategy:
