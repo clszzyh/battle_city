@@ -1,13 +1,9 @@
 defmodule BattleCity.MixProject do
   use Mix.Project
 
-  @version "VERSION" |> File.read!() |> String.trim()
+  @version String.trim(File.read!("VERSION"))
   @github_url "https://github.com/clszzyh/battle_city"
-  @description "README.md"
-               |> File.read!()
-               |> String.split("<!-- MDOC -->")
-               |> Enum.fetch!(1)
-               |> String.trim()
+  @description String.trim(Enum.fetch!(String.split(File.read!("README.md"), "<!-- MDOC -->"), 1))
 
   def project do
     [
