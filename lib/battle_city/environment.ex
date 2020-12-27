@@ -9,7 +9,7 @@ defmodule BattleCity.Environment do
   alias BattleCity.Tank
 
   @typep health :: integer() | :infinite
-  @typep shape :: nil | binary()
+  @typep shape :: :full | :top | :bottom | :left | :right | :left_bottom | :right_bottom | :dead
   @type env_object :: Tank.t() | Bullet.t()
   @typep enter_result :: {:error, BattleCity.reason()} | {:ok, env_object}
 

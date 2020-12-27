@@ -30,18 +30,18 @@ defmodule BattleCity.Compile do
   }
 
   @suffix_map %{
-    nil => nil,
-    "3" => "3",
-    "4" => "4",
-    "5" => "5",
-    "8" => "8",
-    "a" => "a",
-    "c" => "c",
-    "f" => "f",
-    "A" => "a",
-    "C" => "c",
-    "E" => "e",
-    "F" => "f"
+    nil => :full,
+    "3" => :top,
+    "4" => :left_bottom,
+    "5" => :left,
+    "8" => :right_bottom,
+    "a" => :right,
+    "c" => :bottom,
+    "f" => :full,
+    "A" => :right,
+    "C" => :bottom,
+    "E" => :dead,
+    "F" => :full
   }
 
   paths = Path.wildcard(@stage_path)
