@@ -1,5 +1,18 @@
 # Changelog
 
+## [v0.1.6](https://github.com/clszzyh/battle_city/tree/v0.1.6) (2020-12-27)
+
+[Full Changelog](https://github.com/clszzyh/battle_city/compare/v0.1.5...v0.1.6)
+
+**Closed issues:**
+
+- Dependabot can't evaluate your Elixir dependency files [\#6](https://github.com/clszzyh/battle_city/issues/6)
+- \[CI FAIL\] rx ry \[Fixed by rx ry\] [\#5](https://github.com/clszzyh/battle_city/issues/5)
+
+**Merged pull requests:**
+
+- Bump credo from 1.5.3 to 1.5.4 [\#8](https://github.com/clszzyh/battle_city/pull/8) ([dependabot[bot]](https://github.com/apps/dependabot))
+
 ## [v0.1.5](https://github.com/clszzyh/battle_city/tree/v0.1.5) (2020-12-25)
 
 [Full Changelog](https://github.com/clszzyh/battle_city/compare/v0.1.4...v0.1.5)
