@@ -45,8 +45,8 @@ defmodule BattleCity.Business.Location do
   @spec do_move({Environment.t(), Environment.t()}, move_struct) ::
           {:halt, atom()} | {:cont, move_struct}
   defp do_move({target, source}, o) do
-    with {:ok, new_o} <- Environment.enter(target, o),
-         {:ok, new_o} <- Environment.leave(source, new_o),
+    with {:ok, new_o} <- Environment.handle_enter(target, o),
+         {:ok, new_o} <- Environment.handle_leave(source, new_o),
          new_o <- Environment.copy_xy(target, new_o) do
       {:cont, new_o}
     else

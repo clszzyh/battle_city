@@ -61,20 +61,17 @@ defmodule BattleCity.Environment do
   end
 
   @spec copy_xy(t(), env_object) :: env_object
-  def copy_xy(
-        %{position: %{x: x, y: y}},
-        %{position: %{path: [_ | rest]} = position} = o
-      ) do
+  def copy_xy(%{position: %{x: x, y: y}}, %{position: %{path: [_ | rest]} = position} = o) do
     %{o | position: %{position | x: x, y: y, path: rest}}
   end
 
-  @spec enter(t(), env_object) :: enter_result
-  def enter(%__MODULE__{enter?: false}, %Tank{}), do: {:error, :forbidden}
+  @spec handle_enter(t(), env_object) :: enter_result
+  def handle_enter(%__MODULE__{enter?: false}, %Tank{}), do: {:error, :forbidden}
 
-  def enter(%__MODULE__{enter?: false, health: :infinite}, %Bullet{} = bullet),
+  def handle_enter(%__MODULE__{enter?: false, health: :infinite}, %Bullet{} = bullet),
     do: {:ok, %{bullet | dead?: true}}
 
-  def enter(
+  def handle_enter(
         %__MODULE__{enter?: false, health: health, position: p},
         %Bullet{__callbacks__: callbacks, position: bp} = bullet
       )
@@ -93,22 +90,18 @@ defmodule BattleCity.Environment do
     {:ok, %{bullet | dead?: true, __callbacks__: [callback | callbacks]}}
   end
 
-  def enter(%__MODULE__{__module__: module} = environment, o) do
+  def handle_enter(%__MODULE__{__module__: module} = environment, o) do
     module.handle_enter(environment, o)
   end
 
-  @spec leave(t(), env_object) :: enter_result
-  def leave(%__MODULE__{__module__: module} = environment, o) do
+  @spec handle_leave(t(), env_object) :: enter_result
+  def handle_leave(%__MODULE__{__module__: module} = environment, o) do
     module.handle_leave(environment, o)
   end
 
   @spec handle_hit(t(), map()) :: {atom, t()}
-  def handle_hit(%__MODULE__{health: 0} = e, _) do
-    {:ignore1, e}
-  end
-
+  def handle_hit(%__MODULE__{health: 0} = e, _), do: {:ignore1, e}
   def handle_hit(%__MODULE__{health: :infinity} = e, _), do: {:ignore2, e}
-
   def handle_hit(%__MODULE__{solid?: true} = e, %{reinforced?: false}), do: {:solid, e}
 
   def handle_hit(%__MODULE__{health: health} = e, %{power: power}) when health <= power do
@@ -156,6 +149,8 @@ defmodule BattleCity.Environment do
     left_bottom: 1,
     right_bottom: 1
   }
-  def handle_init(%{shape: shape} = map),
-    do: Map.put(map, :health, Map.fetch!(@health_map, shape))
+  @spec handle_init(map()) :: map()
+  def handle_init(%{shape: shape} = map) do
+    Map.put(map, :health, Map.fetch!(@health_map, shape))
+  end
 end
