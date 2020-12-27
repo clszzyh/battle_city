@@ -1,17 +1,8 @@
 defmodule BattleCity.Environment.SteelWall do
   @moduledoc false
 
-  use BattleCity.Environment,
-    health: 4,
-    enter?: false
+  use BattleCity.Environment, enter?: false
 
-  # @shape_map %{
-  #   "f" => 1,
-  #   "3" => 2,
-  #   "c" => 3,
-  #   "5" => 4,
-  #   "a" => 5
-  # }
-
-  # @shapes Map.keys(@shape_map)
+  @impl true
+  def handle_init(map), do: Environment.handle_init(map)
 end

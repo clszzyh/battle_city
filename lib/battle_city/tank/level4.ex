@@ -6,5 +6,6 @@ defmodule BattleCity.Tank.Level4 do
     health: 1,
     move_speed: 2,
     bullet_speed: 2,
-    level: 4
+    level: 4,
+    bullet_reinforced?: true
 end

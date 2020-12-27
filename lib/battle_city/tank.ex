@@ -25,6 +25,7 @@ defmodule BattleCity.Tank do
             level: BattleCity.level(),
             points: Tank.points(),
             health: Tank.health(),
+            bullet_reinforced?: boolean(),
             move_speed: Position.speed(),
             bullet_speed: Position.speed()
           }
@@ -37,7 +38,8 @@ defmodule BattleCity.Tank do
       :points,
       :health,
       :move_speed,
-      :bullet_speed
+      :bullet_speed,
+      bullet_reinforced?: false
     ]
 
     use BattleCity.StructCollect

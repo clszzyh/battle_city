@@ -40,13 +40,8 @@ defmodule BattleCity.StructCollect do
         map
         |> maybe_handle_init()
         |> case do
-          %{} = map ->
-            map
-            |> Map.take(unquote(keys))
-            |> Enum.into(@obj)
-
-          {:error, reason} ->
-            raise CompileError, description: "#{inspect(map)} #{reason}"
+          %{} = map -> map |> Map.take(unquote(keys)) |> Enum.into(@obj)
+          {:error, reason} -> raise CompileError, description: "#{inspect(map)} #{reason}"
         end
       end
 

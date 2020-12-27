@@ -88,11 +88,19 @@ defmodule BattleCity.Event do
   defp shoot(%Tank{dead?: true}), do: :dead
   defp shoot(%Tank{shootable?: false}), do: :disabled
 
-  defp shoot(%Tank{id: tank_id, enemy?: enemy?, meta: %{bullet_speed: speed}, position: position}) do
+  defp shoot(%Tank{
+         id: tank_id,
+         __module__: module,
+         enemy?: enemy?,
+         meta: %{bullet_speed: speed, bullet_reinforced?: bullet_reinforced?},
+         position: position
+       }) do
     %Bullet{
       enemy?: enemy?,
       position: position,
       tank_id: tank_id,
+      __module__: module,
+      reinforced?: bullet_reinforced?,
       speed: speed * Position.bullet_speed()
     }
   end

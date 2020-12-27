@@ -8,22 +8,24 @@ defmodule BattleCity.Bullet do
   alias BattleCity.Environment
   alias BattleCity.Position
 
-  @type power :: 1..10
+  @typep power :: 1..10
 
   @type t :: %__MODULE__{
           speed: Position.speed(),
           position: Position.t(),
           id: BattleCity.id(),
           __callbacks__: [ContextCallback.t()],
+          __module__: module(),
           tank_id: BattleCity.id(),
           reason: BattleCity.reason(),
           power: power,
           enemy?: boolean(),
           hidden?: boolean(),
+          reinforced?: boolean(),
           dead?: boolean()
         }
 
-  @enforce_keys [:speed, :position, :tank_id, :enemy?]
+  @enforce_keys [:speed, :position, :tank_id, :enemy?, :__module__, :reinforced?]
   defstruct [
     :speed,
     :position,
@@ -31,7 +33,9 @@ defmodule BattleCity.Bullet do
     :reason,
     :tank_id,
     :enemy?,
-    power: 1,
+    :reinforced?,
+    :__module__,
+    power: 2,
     __callbacks__: [],
     hidden?: false,
     dead?: false
@@ -51,11 +55,16 @@ defmodule BattleCity.Bullet do
   end
 
   def handle_callback(
-        %{action: :damage_environment, value: %{x: x, y: y, power: power}},
+        %{action: :damage_environment, value: %{x: x, y: y} = value},
         _,
         %Context{stage: %{map: map_data} = stage} = ctx
       ) do
-    {_, data} = Map.get_and_update!(map_data, {x, y}, fn e -> {e, Environment.hit(e, power)} end)
+    {_, data} =
+      Map.get_and_update!(map_data, {x, y}, fn e ->
+        {_state, new_e} = Environment.handle_hit(e, value)
+        {e, new_e}
+      end)
+
     %{ctx | stage: %{stage | map: data}}
   end
 

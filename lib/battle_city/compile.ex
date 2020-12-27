@@ -9,7 +9,7 @@ defmodule BattleCity.Compile do
 
   @stage_path Application.app_dir(
                 :battle_city,
-                if(Mix.env() == :dev, do: "priv/stages/[01].json", else: "priv/stages/*.json")
+                if(Mix.env() == :prod, do: "priv/stages/*.json", else: "priv/stages/[01].json")
               )
 
   @bot_map %{
@@ -81,6 +81,7 @@ defmodule BattleCity.Compile do
   def parse_map_1(o, {x, y}) when is_binary(o) do
     {prefix, suffix} = parse_map_2(o)
     module = Map.fetch!(@environment_map, prefix)
+    shape = Map.fetch!(@suffix_map, suffix)
 
     module.init(%{
       raw: o,
@@ -92,7 +93,7 @@ defmodule BattleCity.Compile do
           x: x * Position.atom(),
           y: y * Position.atom()
         }),
-      shape: Map.fetch!(@suffix_map, suffix)
+      shape: shape
     })
   end
 

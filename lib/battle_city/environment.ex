@@ -20,6 +20,7 @@ defmodule BattleCity.Environment do
           health: health,
           shape: shape,
           raw: binary(),
+          solid?: boolean(),
           position: Position.t()
         }
 
@@ -30,6 +31,7 @@ defmodule BattleCity.Environment do
     :shape,
     :raw,
     :position,
+    solid?: false,
     enter?: false,
     health: 0
   ]
@@ -43,6 +45,7 @@ defmodule BattleCity.Environment do
     obj = struct(__MODULE__, opt)
 
     quote location: :keep do
+      alias BattleCity.Environment
       alias BattleCity.Tank
       @impl true
       def handle_enter(_, o), do: {:ok, o}
@@ -73,12 +76,18 @@ defmodule BattleCity.Environment do
 
   def enter(
         %__MODULE__{enter?: false, health: health, position: p},
-        %Bullet{__callbacks__: callbacks} = bullet
+        %Bullet{__callbacks__: callbacks, position: bp} = bullet
       )
-      when health > 0 do
+      when is_integer(health) and health > 0 do
     callback = %ContextCallback{
       action: :damage_environment,
-      value: %{x: p.x, y: p.y, power: bullet.power}
+      value: %{
+        x: p.x,
+        y: p.y,
+        direction: bp.direction,
+        power: bullet.power,
+        reinforced?: bullet.reinforced?
+      }
     }
 
     {:ok, %{bullet | dead?: true, __callbacks__: [callback | callbacks]}}
@@ -93,16 +102,22 @@ defmodule BattleCity.Environment do
     module.handle_leave(environment, o)
   end
 
-  @spec hit(t(), integer) :: t()
-  def hit(%__MODULE__{health: health} = env, damage) when health > 0 and health > damage do
-    %{env | health: health - damage}
+  @spec handle_hit(t(), map()) :: {atom, t()}
+  def handle_hit(%__MODULE__{health: 0} = e, _) do
+    {:ignore1, e}
   end
 
-  def hit(%__MODULE__{health: health} = env, _) when health > 0 do
-    reset(env, BattleCity.Environment.Blank)
+  def handle_hit(%__MODULE__{health: :infinity} = e, _), do: {:ignore2, e}
+
+  def handle_hit(%__MODULE__{solid?: true} = e, %{reinforced?: false}), do: {:solid, e}
+
+  def handle_hit(%__MODULE__{health: health} = e, %{power: power}) when health <= power do
+    {:reset, reset(e, BattleCity.Environment.Blank)}
   end
 
-  def hit(%__MODULE__{} = e, _), do: e
+  def handle_hit(%__MODULE__{health: health} = e, %{power: power, direction: direction}) do
+    {:reduce, normalize(e, {health - power, direction})}
+  end
 
   @spec reset(t(), module()) :: t()
   def reset(%__MODULE__{} = env, module) do
@@ -115,4 +130,32 @@ defmodule BattleCity.Environment do
         enter?: enter?
     }
   end
+
+  @shape_direction_2_map %{
+    up: :top,
+    down: :bottom,
+    right: :right,
+    left: :left
+  }
+
+  @spec normalize(t(), {integer, Position.direction()}) :: t()
+  defp normalize(%__MODULE__{shape: :full} = env, {2, direction}) do
+    %{env | health: 2, shape: @shape_direction_2_map[direction]}
+  end
+
+  defp normalize(%__MODULE__{} = env, {1, direction}) do
+    %{env | health: 1, shape: @shape_direction_2_map[direction]}
+  end
+
+  @health_map %{
+    full: 4,
+    top: 2,
+    bottom: 2,
+    left: 2,
+    right: 2,
+    left_bottom: 1,
+    right_bottom: 1
+  }
+  def handle_init(%{shape: shape} = map),
+    do: Map.put(map, :health, Map.fetch!(@health_map, shape))
 end
