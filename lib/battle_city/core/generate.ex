@@ -1,4 +1,4 @@
-defmodule BattleCity.Business.Generate do
+defmodule BattleCity.Core.Generate do
   @moduledoc false
 
   alias BattleCity.Context

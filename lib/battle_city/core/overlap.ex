@@ -1,4 +1,4 @@
-defmodule BattleCity.Business.Overlap do
+defmodule BattleCity.Core.Overlap do
   @moduledoc false
 
   alias BattleCity.Context

@@ -1,4 +1,4 @@
-defmodule BattleCity.Business.Location do
+defmodule BattleCity.Core.Location do
   @moduledoc false
 
   alias BattleCity.Bullet

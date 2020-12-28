@@ -4,10 +4,10 @@ defmodule BattleCity.Tank do
   """
 
   alias BattleCity.Bullet
-  alias BattleCity.Business.Generate
   alias BattleCity.Config
   alias BattleCity.Context
   alias BattleCity.ContextCallback
+  alias BattleCity.Core.Generate
   alias BattleCity.Position
   alias BattleCity.Process.GameSupervisor
   alias __MODULE__

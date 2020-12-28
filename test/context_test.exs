@@ -5,8 +5,8 @@ defmodule BattleCity.ContextTest do
 
   @moduletag :context
 
-  alias BattleCity.Business.Generate
-  alias BattleCity.Business.Location
+  alias BattleCity.Core.Generate
+  alias BattleCity.Core.Location
   alias BattleCity.Game
   alias BattleCity.Position
   alias BattleCity.Utils

@@ -9,8 +9,8 @@ alias BattleCity.Config
 alias BattleCity.Telemetry
 alias BattleCity.Game
 alias BattleCity.Utils
-alias BattleCity.Business
-alias BattleCity.Business.Move
+alias BattleCity.Core
+alias BattleCity.Core.Move
 
 alias BattleCity.Process.GameServer
 alias BattleCity.Process.GameSupervisor

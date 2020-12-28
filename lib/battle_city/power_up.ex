@@ -38,8 +38,8 @@ defmodule BattleCity.PowerUp do
     obj = struct(__MODULE__, opt)
 
     quote location: :keep do
-      alias BattleCity.Business
       alias BattleCity.Context
+      alias BattleCity.Core
       alias BattleCity.Tank
 
       init_ast(unquote(__MODULE__), __MODULE__, unquote(Macro.escape(obj)), unquote(opt))

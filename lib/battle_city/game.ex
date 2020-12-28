@@ -4,10 +4,10 @@ defmodule BattleCity.Game do
   """
 
   alias BattleCity.Ai
-  alias BattleCity.Business.Generate
-  alias BattleCity.Business.Location
-  alias BattleCity.Business.Overlap
   alias BattleCity.Context
+  alias BattleCity.Core.Generate
+  alias BattleCity.Core.Location
+  alias BattleCity.Core.Overlap
   alias BattleCity.Event
   alias BattleCity.GameCallback
   alias BattleCity.Process.GameDynamicSupervisor

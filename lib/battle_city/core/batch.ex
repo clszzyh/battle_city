@@ -1,4 +1,4 @@
-defmodule BattleCity.Business.Batch do
+defmodule BattleCity.Core.Batch do
   @moduledoc false
 
   alias BattleCity.Context
