@@ -136,6 +136,7 @@ defmodule BattleCity.Game do
       __opts__: opts,
       enable_bot: Map.get(opts, :enable_bot, true),
       loop_interval: Map.get(opts, :loop_interval, @loop_interval),
+      score: Map.get(opts, :score, 0),
       bot_loop_interval: Map.get(opts, :bot_loop_interval, @bot_loop_interval),
       timeout_interval: Map.get(opts, :timeout_interval, @timeout_interval)
     }
@@ -163,8 +164,20 @@ defmodule BattleCity.Game do
     |> Overlap.resolve()
     |> Generate.add_power_up()
     |> Context.handle_callbacks()
+    |> refresh_state()
     |> broadcast()
   end
+
+  @spec refresh_state(Context.t()) :: Context.t()
+  defp refresh_state(%{state: state} = ctx) when state in [:game_over, :complete], do: ctx
+  defp refresh_state(%{rest_players: 0} = ctx), do: %{ctx | state: :game_over}
+  defp refresh_state(%{rest_enemies: 0, level: 35} = ctx), do: %{ctx | state: :complete}
+
+  defp refresh_state(%{rest_enemies: 0, slug: slug, level: level, score: score, __opts__: opts}) do
+    do_init(slug, Map.merge(opts, %{score: score, stage: level + 1}))
+  end
+
+  defp refresh_state(%{} = ctx), do: ctx
 
   @spec broadcast(Context.t()) :: Context.t()
   defp broadcast(%Context{} = ctx), do: GameCallback.tick(ctx)

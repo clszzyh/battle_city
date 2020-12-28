@@ -151,11 +151,24 @@ defmodule BattleCity.Tank do
     fn ctx -> ctx |> Context.maybe_add_points(tank) |> Generate.add_bot(%{bot_count: 1}) end
   end
 
+  def handle_callback(%{action: :delete}, %__MODULE__{enemy?: false}, _ctx) do
+    # {:ok, _reason} = GameSupervisor.stop_tank(ctx.slug, id)
+    fn %{rest_players: rest_players} = ctx -> %{ctx | rest_players: rest_players - 1} end
+  end
+
   def handle_callback(_, _, ctx), do: ctx
 
   @spec hit(t(), Bullet.t()) :: t()
   def hit(%__MODULE__{health: health} = tank, %Bullet{power: power}) when power < health do
     %__MODULE__{tank | health: health - power}
+  end
+
+  def hit(%__MODULE__{lifes: lifes} = tank, _) when lifes > 1 do
+    %__MODULE__{
+      tank
+      | lifes: lifes - 1,
+        position: Position.init(%{x: :x_player_1, y: :y_player_1, direction: :up})
+    }
   end
 
   def hit(%__MODULE__{} = tank, %Bullet{}), do: %{tank | dead?: true, reason: :hit}

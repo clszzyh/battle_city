@@ -34,6 +34,7 @@ defmodule BattleCity.Context do
 
   @type t :: %__MODULE__{
           rest_enemies: integer(),
+          rest_players: integer(),
           shovel?: boolean(),
           mock: boolean(),
           level: BattleCity.level(),
@@ -63,13 +64,14 @@ defmodule BattleCity.Context do
     :bot_loop_interval,
     :enable_bot,
     :mock,
+    :score,
     :__opts__
   ]
   @derive {SimpleDisplay,
            only: [:level, :rest_enemies, :shovel?, :state, :loop_interval, :timeout_interval]}
   defstruct @enforce_keys ++
               [
-                score: 0,
+                rest_players: 1,
                 tanks: %{},
                 bullets: %{},
                 power_ups: %{},
