@@ -3,8 +3,10 @@ defmodule BattleCity.Process.GameServer do
   use GenServer
   use BattleCity.Process.ProcessRegistry
 
+  alias BattleCity.Context
   alias BattleCity.Event
   alias BattleCity.Game
+  alias BattleCity.PowerUp
   alias BattleCity.Process.GameDynamicSupervisor
   alias BattleCity.Process.TankDynamicSupervisor
   require Logger
@@ -104,6 +106,15 @@ defmodule BattleCity.Process.GameServer do
 
   def handle_info(:timeout, ctx) do
     :ok = GameDynamicSupervisor.terminate_child(ctx.slug)
+    {:noreply, ctx}
+  end
+
+  def handle_info({:remove_power_up, id}, ctx) do
+    %{tank_id: tank_id} = power_up = Context.fetch_object!(ctx, :power_ups, id)
+    tank = Context.fetch_object!(ctx, :tanks, tank_id)
+    {ctx, tank} = PowerUp.remove(ctx, tank, power_up)
+
+    ctx = ctx |> Context.delete_object(:power_ups, id) |> Context.put_object(tank)
     {:noreply, ctx}
   end
 

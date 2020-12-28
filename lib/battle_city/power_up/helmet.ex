@@ -4,12 +4,12 @@ defmodule BattleCity.PowerUp.Helmet do
   use BattleCity.PowerUp
 
   @impl true
-  def handle_on(%Context{}, %Tank{} = tank) do
-    %{tank | shield?: true}
+  def handle_add(%Context{} = ctx, %Tank{} = tank) do
+    {ctx, %{tank | shield?: true}}
   end
 
   @impl true
-  def handle_off(%Context{}, %Tank{} = tank) do
-    %{tank | shield?: false}
+  def handle_remove(%Context{} = ctx, %Tank{} = tank) do
+    {ctx, %{tank | shield?: false}}
   end
 end

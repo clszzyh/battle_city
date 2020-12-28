@@ -7,6 +7,7 @@ defmodule BattleCity.PowerUp do
   alias BattleCity.Context
   alias BattleCity.ContextCallback
   alias BattleCity.Position
+  alias BattleCity.Process.GameServer
   alias BattleCity.Tank
 
   @typep duration :: integer() | :instant
@@ -16,6 +17,9 @@ defmodule BattleCity.PowerUp do
           id: BattleCity.id(),
           duration: duration(),
           position: Position.t(),
+          hidden?: boolean(),
+          tank_id: BattleCity.id() | nil,
+          __ref__: reference(),
           __callbacks__: [ContextCallback.t()]
         }
 
@@ -24,15 +28,21 @@ defmodule BattleCity.PowerUp do
     :__module__,
     :id,
     :position,
+    :__ref__,
+    :tank_id,
+    hidden?: false,
     __callbacks__: [],
     duration: Config.get(:power_up_duration)
   ]
 
   use BattleCity.StructCollect
 
-  @callback handle_on(Context.t(), Tank.t()) :: BattleCity.invoke_tank_result()
-  @callback handle_off(Context.t(), Tank.t()) :: BattleCity.invoke_tank_result()
-  @optional_callbacks handle_off: 2
+  @typep power_up_result :: {Context.t(), Tank.t()}
+  @typep maybe_power_up_f :: nil | Context.update_raw_fun()
+
+  @callback handle_add(Context.t(), Tank.t()) :: power_up_result
+  @callback handle_remove(Context.t(), Tank.t()) :: power_up_result
+  @optional_callbacks handle_remove: 2
 
   defmacro __using__(opt \\ []) do
     obj = struct(__MODULE__, opt)
@@ -61,28 +71,40 @@ defmodule BattleCity.PowerUp do
   use BattleCity.ContextCallback
 
   @impl true
-  def handle_callback(_, _, ctx), do: ctx
-
-  @spec add(Tank.t(), t()) :: Tank.t()
-  def add(%Tank{} = tank, %__MODULE__{}) do
-    tank
+  def handle_callback(%{action: :create}, %__MODULE__{id: me}, %{power_ups: power_ups} = ctx) do
+    for {id, _} <- power_ups, id != me, reduce: ctx do
+      ctx -> Context.delete_object(ctx, :power_ups, id)
+    end
   end
 
-  # @spec on(Context.t(), Tank.t(), t()) :: BattleCity.invoke_result()
-  # def on(%Context{} = ctx, %Tank{} = tank, %__MODULE__{} = powerup) do
-  #   powerup.__module__.handle_on(ctx, tank)
-  #   |> BattleCity.parse_tank_result(ctx, tank)
-  #   |> Context.put_object()
-  # end
+  def handle_callback(_, _, ctx), do: ctx
 
-  # @spec off(Context.t(), Tank.t(), t()) :: BattleCity.invoke_result()
-  # def off(%Context{} = ctx, %Tank{} = tank, %__MODULE__{} = powerup) do
-  #   if function_exported?(powerup.__module__, :handle_off, 2) do
-  #     powerup.__module__.handle_off(ctx, tank)
-  #     |> BattleCity.parse_tank_result(ctx, tank)
-  #     |> Context.put_object()
-  #   else
-  #     Context.put_object(ctx, tank)
-  #   end
-  # end
+  @spec add(Context.t(), Tank.t(), t()) :: {Context.t(), Tank.t(), maybe_power_up_f}
+  def add(%{slug: slug} = ctx, %Tank{} = tank, %__MODULE__{
+        __module__: module,
+        id: id,
+        duration: duration
+      }) do
+    {ctx, tank} = module.handle_add(ctx, tank)
+
+    if is_integer(duration) do
+      srv = GameServer.pid(slug)
+
+      if srv do
+        ref = Process.send_after(srv, {:remove_power_up, id}, duration)
+
+        {ctx, tank,
+         fn p -> {p, Map.merge(p, %{__ref__: ref, tank_id: tank.id, hidden?: true})} end}
+      else
+        {ctx, tank, nil}
+      end
+    else
+      {ctx, tank, nil}
+    end
+  end
+
+  @spec remove(Context.t(), Tank.t(), t()) :: power_up_result
+  def remove(ctx, %Tank{} = tank, %__MODULE__{__module__: module}) do
+    module.handle_remove(ctx, tank)
+  end
 end

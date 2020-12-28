@@ -4,7 +4,8 @@ defmodule BattleCity.PowerUp.Grenade do
   use BattleCity.PowerUp, duration: :instant
 
   @impl true
-  def handle_on(%Context{} = ctx, %Tank{} = tank) do
-    Core.Batch.handle_all_enemies(ctx, tank, {:kill, :grenade})
+  def handle_add(%Context{} = ctx, %Tank{} = tank) do
+    ctx = Core.Batch.handle_all_enemies(ctx, tank, {:kill, :grenade})
+    {ctx, tank}
   end
 end

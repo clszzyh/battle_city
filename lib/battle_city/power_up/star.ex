@@ -4,13 +4,16 @@ defmodule BattleCity.PowerUp.Star do
   use BattleCity.PowerUp
 
   @impl true
-  def handle_on(%Context{}, %Tank{__module__: module} = tank) do
-    case module.handle_level_up(tank) do
-      nil ->
-        tank
+  def handle_add(%Context{} = ctx, %Tank{__module__: module} = tank) do
+    tank =
+      case module.handle_level_up(tank) do
+        nil ->
+          tank
 
-      new_module ->
-        %{tank | __module__: new_module, meta: new_module.init([])}
-    end
+        new_module ->
+          %{tank | __module__: new_module, meta: new_module.init([])}
+      end
+
+    {ctx, tank}
   end
 end

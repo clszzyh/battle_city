@@ -59,7 +59,12 @@ defmodule BattleCity.Core.Overlap do
   defp do_resolve({_, {%{type: :t, id: tid}, _}, {%{type: :p, id: pid}, _}}, ctx) do
     power_up = Context.fetch_object!(ctx, :power_ups, pid)
     tank = Context.fetch_object!(ctx, :tanks, tid)
-    tank = PowerUp.add(tank, power_up)
-    ctx |> Context.delete_object(:power_ups, pid) |> Context.put_object(tank)
+    {ctx, tank, power_up_f} = PowerUp.add(ctx, tank, power_up)
+
+    if power_up_f do
+      ctx |> Context.update_object_raw!(:power_ups, pid, power_up_f) |> Context.put_object(tank)
+    else
+      ctx |> Context.delete_object(:power_ups, pid) |> Context.put_object(tank)
+    end
   end
 end

@@ -20,13 +20,14 @@ defmodule BattleCity.Context do
   @typep state :: :started | :paused | :game_over | :complete
   @typep grid_struct :: PowerUp.t() | Tank.t() | Bullet.t() | Environment.t()
   @type object_struct :: PowerUp.t() | Tank.t() | Bullet.t() | nil
-  @typep update_raw_fun :: (object_struct -> {object_struct, object_struct})
+  @type update_raw_fun :: (object_struct -> {object_struct, object_struct})
 
   @typep grid :: %{
            required(:type) => BattleCity.short_type(),
            required(:x) => integer(),
            required(:y) => integer(),
-           required(:d) => atom() | binary(),
+           optional(:h) => boolean(),
+           optional(:d) => atom() | binary(),
            optional(:kind) => atom()
          }
 
@@ -90,16 +91,16 @@ defmodule BattleCity.Context do
     %{type: :e, kind: module.__name__(), x: p.rx, y: p.ry, d: shape}
   end
 
-  def grid(%Tank{position: p, __module__: module}) do
-    %{type: :t, kind: module.__name__(), x: p.rx, y: p.ry, d: p.direction}
+  def grid(%Tank{position: p, __module__: module, hidden?: hidden?}) do
+    %{type: :t, kind: module.__name__(), x: p.rx, y: p.ry, d: p.direction, h: hidden?}
   end
 
-  def grid(%Bullet{position: p}) do
-    %{type: :b, x: p.rx, y: p.ry, d: p.direction}
+  def grid(%Bullet{position: p, hidden?: hidden?}) do
+    %{type: :b, x: p.rx, y: p.ry, d: p.direction, h: hidden?}
   end
 
-  def grid(%PowerUp{position: p, __module__: module}) do
-    %{type: :p, x: p.rx, y: p.ry, kind: module.__name__()}
+  def grid(%PowerUp{position: p, __module__: module, hidden?: hidden?}) do
+    %{type: :p, x: p.rx, y: p.ry, kind: module.__name__(), h: hidden?}
   end
 
   @spec grids(t()) :: [grid]
