@@ -91,7 +91,6 @@ defmodule BattleCity.Tank do
           position: Position.t(),
           speed: Position.speed(),
           lifes: integer(),
-          score: integer(),
           health: health(),
           reason: BattleCity.reason(),
           enemy?: boolean(),
@@ -105,7 +104,7 @@ defmodule BattleCity.Tank do
         }
 
   @enforce_keys [:meta, :__module__, :position]
-  @derive {SimpleDisplay, only: [:id, :__module__, :speed, :health, :score, :lifes]}
+  @derive {SimpleDisplay, only: [:id, :__module__, :speed, :health, :lifes]}
   defstruct [
     :__module__,
     :meta,
@@ -114,7 +113,6 @@ defmodule BattleCity.Tank do
     :position,
     :speed,
     :health,
-    score: 0,
     dead?: false,
     shield?: false,
     enemy?: true,
@@ -147,9 +145,10 @@ defmodule BattleCity.Tank do
     ctx
   end
 
-  def handle_callback(%{action: :delete}, %__MODULE__{enemy?: true, id: id}, ctx) do
+  def handle_callback(%{action: :delete}, %__MODULE__{enemy?: true, id: id} = tank, ctx) do
     {:ok, _reason} = GameSupervisor.stop_tank(ctx.slug, id)
-    fn ctx -> ctx |> Generate.add_bot(%{bot_count: 1}) end
+
+    fn ctx -> ctx |> Context.maybe_add_points(tank) |> Generate.add_bot(%{bot_count: 1}) end
   end
 
   def handle_callback(_, _, ctx), do: ctx
@@ -159,5 +158,5 @@ defmodule BattleCity.Tank do
     %__MODULE__{tank | health: health - power}
   end
 
-  def hit(%__MODULE__{} = tank, %Bullet{}), do: %{tank | dead?: true}
+  def hit(%__MODULE__{} = tank, %Bullet{}), do: %{tank | dead?: true, reason: :hit}
 end

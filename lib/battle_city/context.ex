@@ -46,6 +46,7 @@ defmodule BattleCity.Context do
           __opts__: map(),
           __global_callbacks__: [callback_fn],
           state: state(),
+          score: integer(),
           objects: %{Position.coordinate() => %{Object.t() => Object.value()}},
           stage: Stage.t(),
           power_ups: %{BattleCity.id() => PowerUp.t()},
@@ -68,6 +69,7 @@ defmodule BattleCity.Context do
            only: [:level, :rest_enemies, :shovel?, :state, :loop_interval, :timeout_interval]}
   defstruct @enforce_keys ++
               [
+                score: 0,
                 tanks: %{},
                 bullets: %{},
                 power_ups: %{},
@@ -301,4 +303,16 @@ defmodule BattleCity.Context do
     ctx = f.(ctx)
     handle_callbacks(%{ctx | __global_callbacks__: rest})
   end
+
+  @spec maybe_add_points(t(), Tank.t()) :: t()
+  def maybe_add_points(%__MODULE__{score: score} = ctx, %Tank{
+        enemy?: true,
+        dead?: true,
+        reason: :hit,
+        meta: %{points: points}
+      }) do
+    %{ctx | score: score + points}
+  end
+
+  def maybe_add_points(ctx, _), do: ctx
 end

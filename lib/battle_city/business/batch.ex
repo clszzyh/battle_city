@@ -1,7 +1,6 @@
 defmodule BattleCity.Business.Batch do
   @moduledoc false
 
-  alias BattleCity.Business
   alias BattleCity.Context
   alias BattleCity.Tank
 
@@ -43,16 +42,7 @@ defmodule BattleCity.Business.Batch do
     {%{target | freezed?: false}, {ctx, tank}}
   end
 
-  defp reduce_op(
-         :kill,
-         %Tank{meta: %{points: points}} = target,
-         %Context{} = ctx,
-         %Tank{} = tank,
-         reason
-       ) do
-    target = %{target | dead?: true, reason: reason}
-    tank = Business.Score.add_score(tank, points, reason)
-
-    {target, {ctx, tank}}
+  defp reduce_op(:kill, target, %Context{} = ctx, %Tank{} = tank, reason) do
+    {%{target | dead?: true, reason: reason}, {ctx, tank}}
   end
 end
