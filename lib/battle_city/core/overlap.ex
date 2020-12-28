@@ -43,13 +43,21 @@ defmodule BattleCity.Core.Overlap do
 
   defp do_resolve({_, {%{type: :b, enemy?: b}, _}, {%{type: :b, enemy?: b}, _}}, ctx), do: ctx
 
-  defp do_resolve({_, {%{type: :b, id: bid1}, _}, {%{type: :b, id: bid2}, _}}, ctx) do
+  defp do_resolve(
+         {_, {%{type: :b, id: bid1}, _}, {%{type: :b, id: bid2}, _}},
+         %{bullets: bullets} = ctx
+       )
+       when is_map_key(bullets, bid1) and is_map_key(bullets, bid2) do
     ctx |> Context.delete_object(:bullets, bid1) |> Context.delete_object(:bullets, bid2)
   end
 
   defp do_resolve({_, {%{type: :t, enemy?: b}, _}, {%{type: :b, enemy?: b}, _}}, ctx), do: ctx
 
-  defp do_resolve({_, {%{type: :t, id: tid}, _}, {%{type: :b, id: bid}, _}}, ctx) do
+  defp do_resolve(
+         {_, {%{type: :t, id: tid}, _}, {%{type: :b, id: bid}, _}},
+         %{bullets: bullets, tanks: tanks} = ctx
+       )
+       when is_map_key(bullets, bid) and is_map_key(tanks, tid) do
     bullet = Context.fetch_object!(ctx, :bullets, bid)
 
     {:ok, ctx, _tank} =
@@ -58,7 +66,11 @@ defmodule BattleCity.Core.Overlap do
     ctx |> Context.delete_object(:bullets, bid)
   end
 
-  defp do_resolve({_, {%{type: :t, id: tid}, _}, {%{type: :p, id: pid}, _}}, ctx) do
+  defp do_resolve(
+         {_, {%{type: :t, id: tid}, _}, {%{type: :p, id: pid}, _}},
+         %{tanks: tanks, power_ups: power_ups} = ctx
+       )
+       when is_map_key(tanks, tid) and is_map_key(power_ups, pid) do
     power_up = Context.fetch_object!(ctx, :power_ups, pid)
 
     {result, ctx, _tank} =
@@ -69,4 +81,6 @@ defmodule BattleCity.Core.Overlap do
       _ -> Context.delete_object(ctx, :power_ups, pid)
     end
   end
+
+  defp do_resolve(_, ctx), do: ctx
 end

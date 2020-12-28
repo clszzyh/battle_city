@@ -12,6 +12,8 @@ defmodule BattleCity.Compile do
                 if(Mix.env() == :prod, do: "priv/stages/*.json", else: "priv/stages/[01].json")
               )
 
+  # @stage_path "priv/stages/[01].json"
+
   @bot_map %{
     "fast" => Tank.Fast,
     "power" => Tank.Power,

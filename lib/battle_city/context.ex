@@ -265,10 +265,7 @@ defmodule BattleCity.Context do
   def fetch_object(ctx, :t, id), do: fetch_object(ctx, :tanks, id)
   def fetch_object(ctx, :p, id), do: fetch_object(ctx, :power_ups, id)
   def fetch_object(ctx, :b, id), do: fetch_object(ctx, :bullets, id)
-
-  def fetch_object(ctx, key, id) do
-    ctx |> Map.fetch!(key) |> Map.get(id)
-  end
+  def fetch_object(ctx, key, id), do: ctx |> Map.fetch!(key) |> Map.get(id)
 
   def fetch_object!(ctx, key, id) do
     fetch_object(ctx, key, id) || raise("Can't find: #{key}, #{id}")
