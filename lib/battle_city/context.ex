@@ -175,19 +175,23 @@ defmodule BattleCity.Context do
   def put_object(ctx, [o | rest]), do: ctx |> put_object(o) |> put_object(rest)
 
   def put_object(%{__counters__: %{bullet: i} = c} = ctx, %Bullet{id: nil} = o) do
-    put_object(%{ctx | __counters__: %{c | bullet: i + 1}}, %{o | id: "b#{i}"})
+    i = i + 1
+    put_object(%{ctx | __counters__: %{c | bullet: i}}, %{o | id: "b#{i}"})
   end
 
   def put_object(%{__counters__: %{power_up: i} = c} = ctx, %PowerUp{id: nil} = o) do
-    put_object(%{ctx | __counters__: %{c | power_up: i + 1}}, %{o | id: "p#{i}"})
+    i = i + 1
+    put_object(%{ctx | __counters__: %{c | power_up: i}}, %{o | id: "p#{i}"})
   end
 
   def put_object(%{__counters__: %{enemy: i} = c} = ctx, %Tank{id: nil, enemy?: true} = o) do
-    put_object(%{ctx | __counters__: %{c | enemy: i + 1}}, %{o | id: "e#{i}"})
+    i = i + 1
+    put_object(%{ctx | __counters__: %{c | enemy: i}}, Tank.normalize(o, i))
   end
 
   def put_object(%{__counters__: %{player: i} = c} = ctx, %Tank{id: nil, enemy?: false} = o) do
-    put_object(%{ctx | __counters__: %{c | player: i + 1}}, %{o | id: "t#{i}"})
+    i = i + 1
+    put_object(%{ctx | __counters__: %{c | player: i}}, Tank.normalize(o, i))
   end
 
   def put_object(ctx, o) do

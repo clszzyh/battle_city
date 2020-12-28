@@ -49,7 +49,6 @@ defmodule BattleCity.Core.Generate do
     opts =
       Map.merge(opts, %{
         enemy?: true,
-        lifes: 1,
         x: Map.get(opts, :enemy_x, :x_random_enemy),
         y: Map.get(opts, :enemy_y, :y_random_enemy),
         direction: Map.get(opts, :enemy_direction, Enum.random(@diretions))

@@ -62,7 +62,7 @@ defmodule BattleCity.GameTest do
     assert Context.fetch_object!(ctx, :t, name).shootable?
     assert Context.fetch_object!(ctx, :t, name).speed == 2
 
-    tank = TankServer.pid({slug, "e0"})
+    tank = TankServer.pid({slug, "e1"})
     assert Process.alive?(tank)
 
     {:ok, ctx} =
@@ -98,10 +98,10 @@ defmodule BattleCity.GameTest do
     refute Context.fetch_object!(ctx, :t, name).shootable?
     assert Enum.count(ctx.bullets) == 1
     assert ctx.__counters__.bullet == 2
-    assert ctx.bullets["b1"].position.x == Context.fetch_object!(ctx, :t, name).position.x
-    assert ctx.bullets["b1"].position.y == Context.fetch_object!(ctx, :t, name).position.y
-    assert ctx.tanks["e0"].position.x == 0
-    assert ctx.tanks["e0"].position.y == 0
+    assert ctx.bullets["b2"].position.x == Context.fetch_object!(ctx, :t, name).position.x
+    assert ctx.bullets["b2"].position.y == Context.fetch_object!(ctx, :t, name).position.y
+    assert ctx.tanks["e1"].position.x == 0
+    assert ctx.tanks["e1"].position.y == 0
     assert map_size(ctx.objects[{0, 0}]) == 1
     assert Enum.count(Context.non_empty_objects(ctx)) == 3
 
@@ -112,15 +112,15 @@ defmodule BattleCity.GameTest do
     # assert Enum.empty?(ctx.objects[{0, 0}])
     assert Context.fetch_object!(ctx, :t, name).shootable?
     refute Process.alive?(tank)
-    assert is_nil(ctx.tanks["e0"])
+    assert is_nil(ctx.tanks["e1"])
 
     assert ctx.rest_enemies == 18
     assert ctx.mock
-    tank = TankServer.pid({slug, "e1"})
+    tank = TankServer.pid({slug, "e2"})
     assert Process.alive?(tank)
     refute TankServer.state(tank).loop
     assert Enum.count(Context.object_grids(ctx)) == 2
-    assert ctx.tanks["e1"] != nil
+    assert ctx.tanks["e2"] != nil
     # {:ok, ctx} = Game.start_event(ctx, %Event{name: :move, id: name})
   end
 
@@ -136,9 +136,9 @@ defmodule BattleCity.GameTest do
     {:ok, ctx} = Game.start_event(ctx, %Event{name: :move, value: :left, id: name})
     {:ok, ctx} = Game.start_event(ctx, %Event{name: :shoot, id: name})
     refute Context.fetch_object!(ctx, :t, name).shootable?
-    refute Context.fetch_object!(ctx, :t, "e0").dead?
+    refute Context.fetch_object!(ctx, :t, "e1").dead?
 
-    tank = TankServer.pid({slug, "e0"})
+    tank = TankServer.pid({slug, "e1"})
     assert Process.alive?(tank)
     # Process.send(tank, :loop, [])
 
@@ -148,7 +148,7 @@ defmodule BattleCity.GameTest do
     {:ok, ctx} = Game.invoke_call(slug, {:loop, 100})
     assert Enum.empty?(ctx.bullets)
     assert Context.fetch_object!(ctx, :t, name).shootable?
-    assert Context.fetch_object(ctx, :t, "e0") == nil
+    assert Context.fetch_object(ctx, :t, "e1") == nil
     assert Enum.empty?(ctx.objects[{x, y}])
     refute Process.alive?(tank)
   end
@@ -214,16 +214,16 @@ defmodule BattleCity.GameTest do
     assert Map.fetch!(ctx.objects, {x, y}) ==
              %{
                %Object{type: :t, id: name, enemy?: false} => :up,
-               %Object{type: :b, id: "b0", enemy?: false} => :up
+               %Object{type: :b, id: "b1", enemy?: false} => :up
              }
 
     assert Enum.count(ctx.bullets) == 1
-    bullet = Map.fetch!(ctx.bullets, "b0")
+    bullet = Map.fetch!(ctx.bullets, "b1")
     assert bullet.position.ry == position.ry
     assert position.direction == :up
     {:ok, ctx1} = Game.invoke_call(slug, :loop)
     assert ctx1.__counters__.loop == ctx.__counters__.loop + 1
-    new_bullet = Map.fetch!(ctx1.bullets, "b0")
+    new_bullet = Map.fetch!(ctx1.bullets, "b1")
     new_position = new_bullet.position
     assert new_position.ry == position.ry - new_bullet.speed
   end

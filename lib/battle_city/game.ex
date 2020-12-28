@@ -4,6 +4,7 @@ defmodule BattleCity.Game do
   """
 
   alias BattleCity.Ai
+  alias BattleCity.Config
   alias BattleCity.Context
   alias BattleCity.Core.Generate
   alias BattleCity.Core.Location
@@ -124,6 +125,7 @@ defmodule BattleCity.Game do
         x: :x_player_1,
         y: :y_player_1,
         direction: :up,
+        lifes: Config.get(:life_count),
         id: opts[:player_name]
       })
       |> tank.new()
@@ -162,7 +164,6 @@ defmodule BattleCity.Game do
     ctx
     |> Location.move_all()
     |> Overlap.resolve()
-    |> Generate.add_power_up()
     |> Context.handle_callbacks()
     |> refresh_state()
     |> broadcast()

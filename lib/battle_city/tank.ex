@@ -4,7 +4,6 @@ defmodule BattleCity.Tank do
   """
 
   alias BattleCity.Bullet
-  alias BattleCity.Config
   alias BattleCity.Context
   alias BattleCity.ContextCallback
   alias BattleCity.Core.Generate
@@ -90,6 +89,7 @@ defmodule BattleCity.Tank do
           id: BattleCity.id(),
           __callbacks__: [ContextCallback.t()],
           __opts__: map(),
+          __index__: integer(),
           position: Position.t(),
           speed: Position.speed(),
           lifes: integer(),
@@ -116,6 +116,7 @@ defmodule BattleCity.Tank do
     :position,
     :speed,
     :health,
+    __index__: 0,
     __opts__: %{},
     dead?: false,
     shield?: false,
@@ -127,7 +128,7 @@ defmodule BattleCity.Tank do
     changed?: true,
     freezed?: false,
     __callbacks__: [],
-    lifes: Config.get(:life_count)
+    lifes: 1
   ]
 
   use BattleCity.ContextCallback
@@ -173,4 +174,12 @@ defmodule BattleCity.Tank do
   end
 
   def handle_hit(%__MODULE__{} = tank, %Bullet{}), do: %{tank | dead?: true, reason: :hit}
+
+  def normalize(%__MODULE__{enemy?: false} = o, i), do: %{o | id: "t#{i}", __index__: i}
+
+  def normalize(%__MODULE__{enemy?: true} = o, i) when rem(i, 4) != 0,
+    do: %{o | id: "e#{i}", __index__: i}
+
+  def normalize(%__MODULE__{enemy?: true} = o, i),
+    do: %{o | id: "e#{i}", __index__: i, with_power_up?: true}
 end
