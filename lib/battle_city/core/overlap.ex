@@ -52,7 +52,7 @@ defmodule BattleCity.Core.Overlap do
   defp do_resolve({_, {%{type: :t, id: tid}, _}, {%{type: :b, id: bid}, _}}, ctx) do
     bullet = Context.fetch_object!(ctx, :bullets, bid)
     tank = Context.fetch_object!(ctx, :tanks, tid)
-    tank = Tank.hit(tank, bullet)
+    tank = Tank.handle_hit(tank, bullet)
     ctx |> Context.delete_object(:bullets, bid) |> Context.put_object(tank)
   end
 

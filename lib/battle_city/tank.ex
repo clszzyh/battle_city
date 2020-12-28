@@ -65,6 +65,7 @@ defmodule BattleCity.Tank do
 
           data = %{
             __module__: __MODULE__,
+            __opts__: map,
             meta: meta,
             position:
               Position.init(
@@ -88,11 +89,13 @@ defmodule BattleCity.Tank do
           meta: Base.t(),
           id: BattleCity.id(),
           __callbacks__: [ContextCallback.t()],
+          __opts__: map(),
           position: Position.t(),
           speed: Position.speed(),
           lifes: integer(),
           health: health(),
           reason: BattleCity.reason(),
+          with_power_up?: boolean(),
           enemy?: boolean(),
           hidden?: boolean(),
           shield?: boolean(),
@@ -113,11 +116,13 @@ defmodule BattleCity.Tank do
     :position,
     :speed,
     :health,
+    __opts__: %{},
     dead?: false,
     shield?: false,
     enemy?: true,
     shootable?: true,
     hidden?: false,
+    with_power_up?: false,
     moving?: false,
     changed?: true,
     freezed?: false,
@@ -158,18 +163,14 @@ defmodule BattleCity.Tank do
 
   def handle_callback(_, _, ctx), do: ctx
 
-  @spec hit(t(), Bullet.t()) :: t()
-  def hit(%__MODULE__{health: health} = tank, %Bullet{power: power}) when power < health do
+  @spec handle_hit(t(), Bullet.t()) :: t()
+  def handle_hit(%__MODULE__{health: health} = tank, %Bullet{power: power}) when power < health do
     %__MODULE__{tank | health: health - power}
   end
 
-  def hit(%__MODULE__{lifes: lifes} = tank, _) when lifes > 1 do
-    %__MODULE__{
-      tank
-      | lifes: lifes - 1,
-        position: Position.init(%{x: :x_player_1, y: :y_player_1, direction: :up})
-    }
+  def handle_hit(%__MODULE__{lifes: lifes, __opts__: opts} = tank, _) when lifes > 1 do
+    %__MODULE__{tank | lifes: lifes - 1, position: Position.init(opts)}
   end
 
-  def hit(%__MODULE__{} = tank, %Bullet{}), do: %{tank | dead?: true, reason: :hit}
+  def handle_hit(%__MODULE__{} = tank, %Bullet{}), do: %{tank | dead?: true, reason: :hit}
 end
