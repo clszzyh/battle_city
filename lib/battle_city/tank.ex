@@ -154,7 +154,12 @@ defmodule BattleCity.Tank do
   def handle_callback(%{action: :delete}, %__MODULE__{enemy?: true, id: id} = tank, ctx) do
     {:ok, _reason} = GameSupervisor.stop_tank(ctx.slug, id)
 
-    fn ctx -> ctx |> Context.maybe_add_points(tank) |> Generate.add_bot(%{bot_count: 1}) end
+    fn ctx ->
+      ctx
+      |> Context.maybe_add_points(tank)
+      |> Context.maybe_add_power_up(tank)
+      |> Generate.add_bot(%{bot_count: 1})
+    end
   end
 
   def handle_callback(%{action: :delete}, %__MODULE__{enemy?: false}, _ctx) do
@@ -175,6 +180,7 @@ defmodule BattleCity.Tank do
 
   def handle_hit(%__MODULE__{} = tank, %Bullet{}), do: %{tank | dead?: true, reason: :hit}
 
+  @spec normalize(t(), integer()) :: t()
   def normalize(%__MODULE__{enemy?: false} = o, i), do: %{o | id: "t#{i}", __index__: i}
 
   def normalize(%__MODULE__{enemy?: true} = o, i) when rem(i, 4) != 0,

@@ -6,6 +6,7 @@ defmodule BattleCity.Context do
   alias BattleCity.Bullet
   alias BattleCity.Config
   alias BattleCity.ContextCallback
+  alias BattleCity.Core.Generate
   alias BattleCity.Environment
   alias BattleCity.Event
   alias BattleCity.Position
@@ -97,6 +98,10 @@ defmodule BattleCity.Context do
     %{type: :b, x: p.rx, y: p.ry, d: p.direction}
   end
 
+  def grid(%PowerUp{position: p, __module__: module}) do
+    %{type: :p, x: p.rx, y: p.ry, kind: module.__name__()}
+  end
+
   @spec grids(t()) :: [grid]
   def grids(%__MODULE__{} = ctx) do
     map_grids(ctx) ++ object_grids(ctx)
@@ -119,10 +124,12 @@ defmodule BattleCity.Context do
   def tank_grids(ctx), do: object_grids(ctx, [:t])
   @spec bullet_grids(t()) :: [grid]
   def bullet_grids(ctx), do: object_grids(ctx, [:b])
+  @spec power_up_grids(t()) :: [grid]
+  def power_up_grids(ctx), do: object_grids(ctx, [:p])
 
   @spec object_grids(t(), nil | [BattleCity.short_type()]) :: [grid]
   def object_grids(%__MODULE__{objects: objects} = ctx, types \\ nil) do
-    types = types || [:b, :t]
+    types = types || [:b, :t, :p]
 
     for {_, mapset} <- objects, map_size(mapset) > 0, reduce: [] do
       ary ->
@@ -321,4 +328,8 @@ defmodule BattleCity.Context do
   end
 
   def maybe_add_points(ctx, _), do: ctx
+
+  @spec maybe_add_power_up(t(), Tank.t()) :: t()
+  def maybe_add_power_up(ctx, %Tank{with_power_up?: false}), do: ctx
+  def maybe_add_power_up(ctx, _), do: Generate.add_power_up(ctx)
 end

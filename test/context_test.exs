@@ -44,7 +44,7 @@ defmodule BattleCity.ContextTest do
   end
 
   test "Put power up", %{ctx: ctx} do
-    new_ctx = Generate.do_add_power_up(ctx, %{})
+    new_ctx = Generate.add_power_up(ctx, %{})
     assert Enum.count(new_ctx.power_ups) == Enum.count(ctx.power_ups) + 1
   end
 

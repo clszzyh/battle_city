@@ -19,18 +19,8 @@ defmodule BattleCity.Core.Generate do
 
   @diretions [:up, :down, :left, :right]
 
-  @spec add_power_up(Context.t()) :: Context.t()
-  def add_power_up(%Context{rest_enemies: rest_enemies} = ctx)
-      when rest_enemies in [4, 8, 12, 16] do
-    ctx |> do_add_power_up()
-  end
-
-  def add_power_up(%Context{} = ctx) do
-    ctx
-  end
-
-  @spec do_add_power_up(Context.t(), map()) :: BattleCity.invoke_result()
-  def do_add_power_up(%Context{} = ctx, opts \\ %{}) do
+  @spec add_power_up(Context.t(), map()) :: Context.t()
+  def add_power_up(%Context{} = ctx, opts \\ %{}) do
     opts = Map.merge(opts, %{x: :x_random, y: :y_random, direction: :down})
     powerup = generate_power_up(opts)
     ctx |> Context.put_object(powerup)
