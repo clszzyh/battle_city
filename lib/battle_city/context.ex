@@ -285,6 +285,25 @@ defmodule BattleCity.Context do
     end
   end
 
+  @spec update_object_and_ctx!(
+          t(),
+          BattleCity.object_keys(),
+          BattleCity.id(),
+          (... -> {term(), t(), object_struct}),
+          [term()]
+        ) :: {term(), t(), object_struct()}
+  def update_object_and_ctx!(ctx, key, id, f, extra \\ []) do
+    data = ctx |> Map.fetch!(key)
+
+    {{result, ctx, o}, data} =
+      Map.get_and_update!(data, id, fn o ->
+        {result, ctx, o} = apply(f, [ctx, o | extra])
+        {{result, ctx, o}, o}
+      end)
+
+    {result, Map.put(ctx, key, data), o}
+  end
+
   @spec update_object_raw!(t(), BattleCity.object_keys(), BattleCity.id(), update_raw_fun) :: t()
   def update_object_raw!(ctx, key, id, f) do
     {_, data} = ctx |> Map.fetch!(key) |> Map.get_and_update!(id, f)

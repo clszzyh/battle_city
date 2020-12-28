@@ -169,16 +169,22 @@ defmodule BattleCity.Tank do
 
   def handle_callback(_, _, ctx), do: ctx
 
-  @spec handle_hit(t(), Bullet.t()) :: t()
-  def handle_hit(%__MODULE__{health: health} = tank, %Bullet{power: power}) when power < health do
+  @spec handle_hit(Context.t(), t(), Bullet.t()) :: {:ok, Context.t(), t()}
+  def handle_hit(ctx, tank, bullet) do
+    tank = handle_hit_1(tank, bullet)
+    {:ok, ctx, tank}
+  end
+
+  def handle_hit_1(%__MODULE__{health: health} = tank, %Bullet{power: power})
+      when power < health do
     %__MODULE__{tank | health: health - power}
   end
 
-  def handle_hit(%__MODULE__{lifes: lifes, __opts__: opts} = tank, _) when lifes > 1 do
+  def handle_hit_1(%__MODULE__{lifes: lifes, __opts__: opts} = tank, _) when lifes > 1 do
     %__MODULE__{tank | lifes: lifes - 1, position: Position.init(opts)}
   end
 
-  def handle_hit(%__MODULE__{} = tank, %Bullet{}), do: %{tank | dead?: true, reason: :hit}
+  def handle_hit_1(%__MODULE__{} = tank, %Bullet{}), do: %{tank | dead?: true, reason: :hit}
 
   @spec normalize(t(), integer()) :: t()
   def normalize(%__MODULE__{enemy?: false} = o, i), do: %{o | id: "t#{i}", __index__: i}

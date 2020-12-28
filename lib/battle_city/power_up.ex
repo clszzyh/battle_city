@@ -38,7 +38,6 @@ defmodule BattleCity.PowerUp do
   use BattleCity.StructCollect
 
   @typep power_up_result :: {Context.t(), Tank.t()}
-  @typep maybe_power_up_f :: nil | Context.update_raw_fun()
 
   @callback handle_add(Context.t(), Tank.t()) :: power_up_result
   @callback handle_remove(Context.t(), Tank.t()) :: power_up_result
@@ -79,7 +78,8 @@ defmodule BattleCity.PowerUp do
 
   def handle_callback(_, _, ctx), do: ctx
 
-  @spec add(Context.t(), Tank.t(), t()) :: {Context.t(), Tank.t(), maybe_power_up_f}
+  @spec add(Context.t(), Tank.t(), t()) ::
+          {:no_srv | :instant | {:later, Context.update_raw_fun()}, Context.t(), Tank.t()}
   def add(%{slug: slug} = ctx, %Tank{} = tank, %__MODULE__{
         __module__: module,
         id: id,
@@ -87,24 +87,28 @@ defmodule BattleCity.PowerUp do
       }) do
     {ctx, tank} = module.handle_add(ctx, tank)
 
-    if is_integer(duration) do
-      srv = GameServer.pid(slug)
+    result =
+      if is_integer(duration) do
+        srv = GameServer.pid(slug)
 
-      if srv do
-        ref = Process.send_after(srv, {:remove_power_up, id}, duration)
+        if srv do
+          ref = Process.send_after(srv, {:remove_power_up, id}, duration)
 
-        {ctx, tank,
-         fn p -> {p, Map.merge(p, %{__ref__: ref, tank_id: tank.id, hidden?: true})} end}
+          {:later,
+           fn p -> {p, Map.merge(p, %{__ref__: ref, tank_id: tank.id, hidden?: true})} end}
+        else
+          :no_srv
+        end
       else
-        {ctx, tank, nil}
+        :instant
       end
-    else
-      {ctx, tank, nil}
-    end
+
+    {result, ctx, tank}
   end
 
-  @spec remove(Context.t(), Tank.t(), t()) :: power_up_result
+  @spec remove(Context.t(), Tank.t(), t()) :: {:ok, Context.t(), Tank.t()}
   def remove(ctx, %Tank{} = tank, %__MODULE__{__module__: module}) do
-    module.handle_remove(ctx, tank)
+    {ctx, tank} = module.handle_remove(ctx, tank)
+    {:ok, ctx, tank}
   end
 end

@@ -51,20 +51,22 @@ defmodule BattleCity.Core.Overlap do
 
   defp do_resolve({_, {%{type: :t, id: tid}, _}, {%{type: :b, id: bid}, _}}, ctx) do
     bullet = Context.fetch_object!(ctx, :bullets, bid)
-    tank = Context.fetch_object!(ctx, :tanks, tid)
-    tank = Tank.handle_hit(tank, bullet)
-    ctx |> Context.delete_object(:bullets, bid) |> Context.put_object(tank)
+
+    {:ok, ctx, _tank} =
+      Context.update_object_and_ctx!(ctx, :tanks, tid, &Tank.handle_hit/3, [bullet])
+
+    ctx |> Context.delete_object(:bullets, bid)
   end
 
   defp do_resolve({_, {%{type: :t, id: tid}, _}, {%{type: :p, id: pid}, _}}, ctx) do
     power_up = Context.fetch_object!(ctx, :power_ups, pid)
-    tank = Context.fetch_object!(ctx, :tanks, tid)
-    {ctx, tank, power_up_f} = PowerUp.add(ctx, tank, power_up)
 
-    if power_up_f do
-      ctx |> Context.update_object_raw!(:power_ups, pid, power_up_f) |> Context.put_object(tank)
-    else
-      ctx |> Context.delete_object(:power_ups, pid) |> Context.put_object(tank)
+    {result, ctx, _tank} =
+      Context.update_object_and_ctx!(ctx, :tanks, tid, &PowerUp.add/3, [power_up])
+
+    case result do
+      {:later, f} -> Context.update_object_raw!(ctx, :power_ups, pid, f)
+      _ -> Context.delete_object(ctx, :power_ups, pid)
     end
   end
 end

@@ -111,11 +111,11 @@ defmodule BattleCity.Process.GameServer do
 
   def handle_info({:remove_power_up, id}, ctx) do
     %{tank_id: tank_id} = power_up = Context.fetch_object!(ctx, :power_ups, id)
-    tank = Context.fetch_object!(ctx, :tanks, tank_id)
-    {ctx, tank} = PowerUp.remove(ctx, tank, power_up)
 
-    ctx = ctx |> Context.delete_object(:power_ups, id) |> Context.put_object(tank)
-    {:noreply, ctx}
+    {:ok, ctx, _tank} =
+      Context.update_object_and_ctx!(ctx, :tanks, tank_id, &PowerUp.remove/3, [power_up])
+
+    {:noreply, ctx |> Context.delete_object(:power_ups, id)}
   end
 
   @impl true
