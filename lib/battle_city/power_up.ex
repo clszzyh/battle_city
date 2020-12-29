@@ -87,6 +87,8 @@ defmodule BattleCity.PowerUp do
       }) do
     {ctx, tank} = module.handle_add(ctx, tank)
 
+    # IO.puts("#{module}, #{id}, #{slug}")
+
     result =
       if is_integer(duration) do
         srv = GameServer.pid(slug)

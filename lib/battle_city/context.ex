@@ -320,7 +320,7 @@ defmodule BattleCity.Context do
     data = ctx |> Map.fetch!(key)
     {o, data} = Map.pop!(data, id)
     xy = {o.position.x, o.position.y}
-    # IO.puts("[delete] #{ctx.slug} #{key} #{id} #{inspect(xy)}, #{inspect(data)}")
+    # IO.puts("[delete] #{ctx.slug} #{key} #{id}")
     o = Map.delete(objects |> Map.fetch!(xy), Object.fingerprint(o) |> elem(0))
 
     ctx |> Map.merge(%{key => data, :objects => Map.put(objects, xy, o)})

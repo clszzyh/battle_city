@@ -9,13 +9,9 @@ defmodule BattleCity.Config do
     telemetry_logger_level: :debug
   }
 
-  @config_keys Map.keys(@default_map)
-
-  def get(key) when key in @config_keys do
+  def get(key) when is_map_key(@default_map, key) do
     Application.get_env(:battle_city, key, Map.fetch!(@default_map, key))
   end
 
-  def get(key, default) do
-    Application.get_env(:battle_city, key, default)
-  end
+  def get(key, default), do: Application.get_env(:battle_city, key, default)
 end
