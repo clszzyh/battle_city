@@ -1,5 +1,13 @@
 # Changelog
 
+## [v0.1.7](https://github.com/clszzyh/battle_city/tree/v0.1.7) (2020-12-29)
+
+[Full Changelog](https://github.com/clszzyh/battle_city/compare/v0.1.6...v0.1.7)
+
+**Merged pull requests:**
+
+- Create LICENSE [\#9](https://github.com/clszzyh/battle_city/pull/9) ([clszzyh](https://github.com/clszzyh))
+
 ## [v0.1.6](https://github.com/clszzyh/battle_city/tree/v0.1.6) (2020-12-27)
 
 [Full Changelog](https://github.com/clszzyh/battle_city/compare/v0.1.5...v0.1.6)
