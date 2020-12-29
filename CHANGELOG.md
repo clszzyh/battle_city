@@ -1,5 +1,15 @@
 # Changelog
 
+## [v0.1.8](https://github.com/clszzyh/battle_city/tree/v0.1.8) (2020-12-29)
+
+[Full Changelog](https://github.com/clszzyh/battle_city/compare/v0.1.7...v0.1.8)
+
+**Closed issues:**
+
+- \[CI FAIL\] fix ci \[Fixed by fix ci\] [\#12](https://github.com/clszzyh/battle_city/issues/12)
+- \[CI FAIL\] doc: prod \[Fixed by fix ci\] [\#11](https://github.com/clszzyh/battle_city/issues/11)
+- \[CI FAIL\] with\_power\_up? \[Fixed by fix shape\] [\#10](https://github.com/clszzyh/battle_city/issues/10)
+
 ## [v0.1.7](https://github.com/clszzyh/battle_city/tree/v0.1.7) (2020-12-29)
 
 [Full Changelog](https://github.com/clszzyh/battle_city/compare/v0.1.6...v0.1.7)
