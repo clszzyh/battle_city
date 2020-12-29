@@ -3,5 +3,6 @@ defmodule BattleCity.Environment.Blank do
 
   use BattleCity.Environment,
     enter?: true,
-    health: 0
+    health: 0,
+    shape: :full
 end

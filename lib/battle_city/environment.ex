@@ -114,14 +114,8 @@ defmodule BattleCity.Environment do
 
   @spec reset(t(), module()) :: t()
   def reset(%__MODULE__{} = env, module) do
-    %{health: health, enter?: enter?} = module.init
-
-    %{
-      env
-      | __module__: module,
-        health: health,
-        enter?: enter?
-    }
+    %{health: health, enter?: enter?, shape: shape} = module.init
+    %{env | __module__: module, health: health, enter?: enter?, shape: shape}
   end
 
   @shape_direction_2_map %{

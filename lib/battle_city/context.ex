@@ -27,6 +27,7 @@ defmodule BattleCity.Context do
            required(:x) => integer(),
            required(:y) => integer(),
            optional(:h) => boolean(),
+           optional(:p) => boolean(),
            optional(:d) => atom() | binary(),
            optional(:kind) => atom()
          }
@@ -91,8 +92,21 @@ defmodule BattleCity.Context do
     %{type: :e, kind: module.__name__(), x: p.rx, y: p.ry, d: shape}
   end
 
-  def grid(%Tank{position: p, __module__: module, hidden?: hidden?}) do
-    %{type: :t, kind: module.__name__(), x: p.rx, y: p.ry, d: p.direction, h: hidden?}
+  def grid(%Tank{
+        position: p,
+        __module__: module,
+        hidden?: hidden?,
+        with_power_up?: with_power_up?
+      }) do
+    %{
+      type: :t,
+      kind: module.__name__(),
+      x: p.rx,
+      y: p.ry,
+      d: p.direction,
+      h: hidden?,
+      p: with_power_up?
+    }
   end
 
   def grid(%Bullet{position: p, hidden?: hidden?}) do

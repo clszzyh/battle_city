@@ -108,6 +108,8 @@ jobs:
         run: mix dialyzer --no-check
       - name: Check Doc
         run: mix docs -f html && ! mix docs -f html 2>&1 | grep -q "warning:"
+        env:
+          MIX_ENV: prod
       - name: Deploy doc
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -392,9 +394,21 @@ jobs:
           body: ${{ steps.Changelog.outputs.changelog }}
           draft: false
           prerelease: false
+      - name: Check Doc
+        run: mix docs -f html && ! mix docs -f html 2>&1 | grep -q "warning:"
+        env:
+          MIX_ENV: prod
+      - name: Deploy doc
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./doc
+          force_orphan: true
+          commit_message: ${{ github.event.head_commit.message || 'unknown' }}
       - name: Publish on hex.pm
         run: mix hex.publish --yes
         env:
+          MIX_ENV: prod
           HEX_API_KEY: ${{ secrets.HEX_API_KEY }}
       - name: Delete old releases
         uses: dev-drprasad/delete-older-releases@v0.2.0

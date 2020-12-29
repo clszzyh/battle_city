@@ -45,6 +45,7 @@ defmodule BattleCity.MixProject do
       ],
       preferred_cli_env: [ci: :test],
       start_permanent: Mix.env() == :prod,
+      xref: [exclude: :crypto],
       deps: deps(),
       aliases: aliases()
     ]
@@ -78,7 +79,7 @@ defmodule BattleCity.MixProject do
       {:telemetry, "~> 0.4.0"},
       {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
       {:credo, "~> 1.4", only: [:dev, :test], runtime: false},
-      {:ex_doc, "~> 0.22", only: [:dev, :test], runtime: false}
+      {:ex_doc, "~> 0.22", runtime: false}
     ]
   end
 

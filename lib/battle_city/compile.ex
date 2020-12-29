@@ -87,14 +87,7 @@ defmodule BattleCity.Compile do
 
     module.init(%{
       raw: o,
-      position:
-        Position.init(%{
-          direction: :up,
-          __parent__: Environment,
-          __module__: module,
-          x: x * Position.atom(),
-          y: y * Position.atom()
-        }),
+      position: Position.init(%{direction: :up, x: x * Position.atom(), y: y * Position.atom()}),
       shape: shape
     })
   end

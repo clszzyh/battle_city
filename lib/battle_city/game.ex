@@ -30,6 +30,7 @@ defmodule BattleCity.Game do
   @loop_interval 100
   @bot_loop_interval 100
   @timeout_interval 1000 * 60 * 60 * 24
+  @max_level 35
 
   def mock do
     for i <- @mock_range, do: start_server("mock-#{i}", %{player_name: "player-#{i}"})
@@ -172,7 +173,7 @@ defmodule BattleCity.Game do
   @spec refresh_state(Context.t()) :: Context.t()
   defp refresh_state(%{state: state} = ctx) when state in [:game_over, :complete], do: ctx
   defp refresh_state(%{rest_players: 0} = ctx), do: %{ctx | state: :game_over}
-  defp refresh_state(%{rest_enemies: 0, level: 35} = ctx), do: %{ctx | state: :complete}
+  defp refresh_state(%{rest_enemies: 0, level: @max_level} = ctx), do: %{ctx | state: :complete}
 
   defp refresh_state(%{rest_enemies: 0, slug: slug, level: level, score: score, __opts__: opts}) do
     do_init(slug, Map.merge(opts, %{score: score, stage: level + 1}))
