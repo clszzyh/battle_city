@@ -129,7 +129,8 @@ defmodule BattleCity.Tank do
 
   use BattleCity.ContextCallback
 
-  @ai_modules [BattleCity.Ai.Simple, BattleCity.Ai.FindHome]
+  # @ai_modules [BattleCity.Ai.Simple, BattleCity.Ai.FindHome]
+  @ai_modules [BattleCity.Ai.Simple]
 
   @impl true
   def handle_callback(%{action: :create}, %__MODULE__{enemy?: true, id: id}, ctx) do
