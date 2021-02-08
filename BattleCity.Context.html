@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.23.0">
+    <meta name="project" content="battle_city v0.1.8">
+
+    <title>BattleCity.Context — battle_city v0.1.8</title>
+    <link rel="stylesheet" href="dist/elixir-9f91ebe876dc01d67920.css" />
+
+    <script src="dist/sidebar_items-6eec8ba22c.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-60a0c9f10e9e52eae31f.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>try { if(localStorage.getItem('night-mode') === 'true') document.body.className += ' night-mode'; } catch (e) { }</script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" id="search-list" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="readme.html" class="sidebar-projectName">
+battle_city
+      </a>
+      <strong class="sidebar-projectVersion">
+        v0.1.8
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+      <h1>
+BattleCity.Context <small class="app-vsn">(battle_city v0.1.8)</small>
+
+          <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/context.ex#L1" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
+
+      </h1>
+
+
+        <section id="moduledoc">
+<p>Context</p>
+        </section>
+
+
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+
+  <div class="summary-types summary">
+    <h2>
+      <a href="#types">Types</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:callback_fn/0">callback_fn()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:object_struct/0">object_struct()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:t/0">t()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:update_raw_fun/0">update_raw_fun()</a>
+
+  </div>
+
+</div>
+
+  </div>
+
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#all_path_object/2">all_path_object(ctx, position)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#bot_loop/1">bot_loop(arg1)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#bullet_grids/1">bullet_grids(ctx)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#camp?/2">camp?(arg1, b)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#camp_direction?/2">camp_direction?(_, _)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#delete_object/3">delete_object(ctx, key, id)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#fetch_object/3">fetch_object(ctx, key, id)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#fetch_object!/3">fetch_object!(ctx, key, id)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#grid/1">grid(arg1)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#grids/1">grids(ctx)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#handle_actions/3">handle_actions(ctx, o, list)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#handle_callbacks/1">handle_callbacks(ctx)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#handle_object/2">handle_object(ctx, tank)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#initial_objects/1">initial_objects(ctx)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#map_grids/1">map_grids(context)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#maybe_add_points/2">maybe_add_points(ctx, arg2)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#maybe_add_power_up/2">maybe_add_power_up(ctx, arg2)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#non_empty_objects/1">non_empty_objects(context)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#object_grids/2">object_grids(ctx, types \\ nil)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#path_object/3">path_object(context, position, direction \\ nil)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#power_up_grids/1">power_up_grids(ctx)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#put_changed_object/2">put_changed_object(ctx, o)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#put_object/1">put_object(arg)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#put_object/2">put_object(ctx, o)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#tank_grids/1">tank_grids(ctx)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#update_object_and_ctx!/5">update_object_and_ctx!(ctx, key, id, f, extra \\ [])</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#update_object_raw/4">update_object_raw(ctx, key, id, f)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#update_object_raw!/4">update_object_raw!(ctx, key, id, f)</a>
+
+  </div>
+
+</div>
+
+  </div>
+
+        </section>
+
+
+        <section id="types" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#types">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Types
+          </h1>
+          <div class="types-list">
+<section class="detail" id="t:callback_fn/0">
+
+  <div class="detail-header">
+    <a href="#t:callback_fn/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">callback_fn()</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/context.ex#L19" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>callback_fn() :: (<a href="#t:t/0">t</a>() -&gt; <a href="#t:t/0">t</a>())</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:object_struct/0">
+
+  <div class="detail-header">
+    <a href="#t:object_struct/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">object_struct()</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/context.ex#L22" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>object_struct() ::
+  <a href="BattleCity.PowerUp.html#t:t/0">BattleCity.PowerUp.t</a>() | <a href="BattleCity.Tank.html#t:t/0">BattleCity.Tank.t</a>() | <a href="BattleCity.Bullet.html#t:t/0">BattleCity.Bullet.t</a>() | nil</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:t/0">
+
+  <div class="detail-header">
+    <a href="#t:t/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">t()</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/context.ex#L38" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>t() :: %BattleCity.Context{
+  __counters__: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>(),
+  __events__: [<a href="BattleCity.Event.html#t:t/0">BattleCity.Event.t</a>()],
+  __global_callbacks__: [<a href="#t:callback_fn/0">callback_fn</a>()],
+  __opts__: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>(),
+  bot_loop_interval: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>(),
+  bullets: %{required(<a href="BattleCity.html#t:id/0">BattleCity.id</a>()) =&gt; <a href="BattleCity.Bullet.html#t:t/0">BattleCity.Bullet.t</a>()},
+  enable_bot: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>(),
+  level: <a href="BattleCity.html#t:level/0">BattleCity.level</a>(),
+  loop_interval: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>(),
+  mock: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>(),
+  objects: %{
+    required(<a href="BattleCity.Position.html#t:coordinate/0">BattleCity.Position.coordinate</a>()) =&gt; %{
+      required(<a href="Object.html#t:t/0">Object.t</a>()) =&gt; <a href="Object.html#t:value/0">Object.value</a>()
+    }
+  },
+  power_ups: %{required(<a href="BattleCity.html#t:id/0">BattleCity.id</a>()) =&gt; <a href="BattleCity.PowerUp.html#t:t/0">BattleCity.PowerUp.t</a>()},
+  rest_enemies: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>(),
+  rest_players: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>(),
+  score: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>(),
+  shovel?: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>(),
+  slug: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(),
+  stage: <a href="BattleCity.Stage.html#t:t/0">BattleCity.Stage.t</a>(),
+  state: state(),
+  tanks: %{required(<a href="BattleCity.html#t:id/0">BattleCity.id</a>()) =&gt; <a href="BattleCity.Tank.html#t:t/0">BattleCity.Tank.t</a>()},
+  timeout_interval: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">integer</a>()
+}</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:update_raw_fun/0">
+
+  <div class="detail-header">
+    <a href="#t:update_raw_fun/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">update_raw_fun()</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/context.ex#L23" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>update_raw_fun() :: (<a href="#t:object_struct/0">object_struct</a>() -&gt; {<a href="#t:object_struct/0">object_struct</a>(), <a href="#t:object_struct/0">object_struct</a>()})</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+          </div>
+        </section>
+
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Functions
+          </h1>
+          <div class="functions-list">
+<section class="detail" id="all_path_object/2">
+
+  <div class="detail-header">
+    <a href="#all_path_object/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">all_path_object(ctx, position)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/context.ex#L176" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>all_path_object(<a href="#t:t/0">t</a>(), <a href="BattleCity.Position.html#t:t/0">BattleCity.Position.t</a>()) :: [
+  {<a href="Object.html#t:kv/0">Object.kv</a>(), <a href="BattleCity.Position.html#t:direction/0">BattleCity.Position.direction</a>()}
+]</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="bot_loop/1">
+
+  <div class="detail-header">
+    <a href="#bot_loop/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">bot_loop(arg1)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/context.ex#L183" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>bot_loop(<a href="#t:t/0">t</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="bullet_grids/1">
+
+  <div class="detail-header">
+    <a href="#bullet_grids/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">bullet_grids(ctx)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/context.ex#L141" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>bullet_grids(<a href="#t:t/0">t</a>()) :: [grid()]</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="camp?/2">
+
+  <div class="detail-header">
+    <a href="#camp?/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">camp?(arg1, b)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/context.ex#L161" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>camp?(<a href="Object.html#t:kv/0">Object.kv</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()) :: <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="camp_direction?/2">
+
+  <div class="detail-header">
+    <a href="#camp_direction?/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">camp_direction?(_, _)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/context.ex#L166" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>camp_direction?({<a href="Object.html#t:kv/0">Object.kv</a>(), <a href="BattleCity.Position.html#t:direction/0">BattleCity.Position.direction</a>()}, <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()) ::
+  <a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">boolean</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="delete_object/3">
+
+  <div class="detail-header">
+    <a href="#delete_object/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">delete_object(ctx, key, id)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/context.ex#L325" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>delete_object(<a href="#t:t/0">t</a>(), <a href="BattleCity.html#t:object_keys/0">BattleCity.object_keys</a>(), <a href="BattleCity.html#t:id/0">BattleCity.id</a>()) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="fetch_object/3">
+
+  <div class="detail-header">
+    <a href="#fetch_object/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">fetch_object(ctx, key, id)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/context.ex#L279" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="fetch_object!/3">
+
+  <div class="detail-header">
+    <a href="#fetch_object!/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">fetch_object!(ctx, key, id)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/context.ex#L284" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="grid/1">
+
+  <div class="detail-header">
+    <a href="#grid/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">grid(arg1)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/context.ex#L91" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>grid(grid_struct()) :: grid()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="grids/1">
+
+  <div class="detail-header">
+    <a href="#grids/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">grids(ctx)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/context.ex#L121" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>grids(<a href="#t:t/0">t</a>()) :: [grid()]</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="handle_actions/3">
+
+  <div class="detail-header">
+    <a href="#handle_actions/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">handle_actions(ctx, o, list)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/context.ex#L224" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>handle_actions(<a href="#t:t/0">t</a>(), <a href="#t:object_struct/0">object_struct</a>(), [<a href="BattleCity.ContextCallback.html#t:t/0">BattleCity.ContextCallback.t</a>()]) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="handle_callbacks/1">
+
+  <div class="detail-header">
+    <a href="#handle_callbacks/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">handle_callbacks(ctx)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/context.ex#L344" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>handle_callbacks(<a href="#t:t/0">t</a>()) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="handle_object/2">
+
+  <div class="detail-header">
+    <a href="#handle_object/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">handle_object(ctx, tank)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/context.ex#L232" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>handle_object(<a href="#t:t/0">t</a>(), <a href="#t:object_struct/0">object_struct</a>()) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="initial_objects/1">
+
+  <div class="detail-header">
+    <a href="#initial_objects/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">initial_objects(ctx)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/context.ex#L187" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>initial_objects(<a href="#t:t/0">t</a>()) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="map_grids/1">
+
+  <div class="detail-header">
+    <a href="#map_grids/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">map_grids(context)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/context.ex#L126" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>map_grids(<a href="#t:t/0">t</a>()) :: [grid()]</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="maybe_add_points/2">
+
+  <div class="detail-header">
+    <a href="#maybe_add_points/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">maybe_add_points(ctx, arg2)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/context.ex#L352" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>maybe_add_points(<a href="#t:t/0">t</a>(), <a href="BattleCity.Tank.html#t:t/0">BattleCity.Tank.t</a>()) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="maybe_add_power_up/2">
+
+  <div class="detail-header">
+    <a href="#maybe_add_power_up/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">maybe_add_power_up(ctx, arg2)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/context.ex#L364" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>maybe_add_power_up(<a href="#t:t/0">t</a>(), <a href="BattleCity.Tank.html#t:t/0">BattleCity.Tank.t</a>()) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="non_empty_objects/1">
+
+  <div class="detail-header">
+    <a href="#non_empty_objects/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">non_empty_objects(context)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/context.ex#L130" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="object_grids/2">
+
+    <span id="object_grids/1"></span>
+
+  <div class="detail-header">
+    <a href="#object_grids/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">object_grids(ctx, types \\ nil)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/context.ex#L146" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>object_grids(<a href="#t:t/0">t</a>(), nil | [<a href="BattleCity.html#t:short_type/0">BattleCity.short_type</a>()]) :: [grid()]</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="path_object/3">
+
+    <span id="path_object/2"></span>
+
+  <div class="detail-header">
+    <a href="#path_object/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">path_object(context, position, direction \\ nil)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/context.ex#L169" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>path_object(<a href="#t:t/0">t</a>(), <a href="BattleCity.Position.html#t:t/0">BattleCity.Position.t</a>(), <a href="BattleCity.Position.html#t:direction/0">BattleCity.Position.direction</a>() | nil) ::
+  [<a href="Object.html#t:kv/0">Object.kv</a>()]</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="power_up_grids/1">
+
+  <div class="detail-header">
+    <a href="#power_up_grids/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">power_up_grids(ctx)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/context.ex#L143" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>power_up_grids(<a href="#t:t/0">t</a>()) :: [grid()]</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="put_changed_object/2">
+
+  <div class="detail-header">
+    <a href="#put_changed_object/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">put_changed_object(ctx, o)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/context.ex#L242" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>put_changed_object(<a href="#t:t/0">t</a>(), <a href="#t:object_struct/0">object_struct</a>()) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="put_object/1">
+
+  <div class="detail-header">
+    <a href="#put_object/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">put_object(arg)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/context.ex#L192" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>put_object({<a href="#t:t/0">t</a>(), <a href="#t:object_struct/0">object_struct</a>()}) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="put_object/2">
+
+  <div class="detail-header">
+    <a href="#put_object/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">put_object(ctx, o)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/context.ex#L195" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>put_object(<a href="#t:t/0">t</a>(), <a href="#t:object_struct/0">object_struct</a>() | [<a href="#t:object_struct/0">object_struct</a>()]) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="tank_grids/1">
+
+  <div class="detail-header">
+    <a href="#tank_grids/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">tank_grids(ctx)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/context.ex#L139" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>tank_grids(<a href="#t:t/0">t</a>()) :: [grid()]</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="update_object_and_ctx!/5">
+
+    <span id="update_object_and_ctx!/4"></span>
+
+  <div class="detail-header">
+    <a href="#update_object_and_ctx!/5" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">update_object_and_ctx!(ctx, key, id, f, extra \\ [])</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/context.ex#L306" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>update_object_and_ctx!(
+  <a href="#t:t/0">t</a>(),
+  <a href="BattleCity.html#t:object_keys/0">BattleCity.object_keys</a>(),
+  <a href="BattleCity.html#t:id/0">BattleCity.id</a>(),
+  (... -&gt; {<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(), <a href="#t:t/0">t</a>(), <a href="#t:object_struct/0">object_struct</a>()}),
+  [<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>()]
+) :: {<a href="https://hexdocs.pm/elixir/typespecs.html#built-in-types">term</a>(), <a href="#t:t/0">t</a>(), <a href="#t:object_struct/0">object_struct</a>()}</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="update_object_raw/4">
+
+  <div class="detail-header">
+    <a href="#update_object_raw/4" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">update_object_raw(ctx, key, id, f)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/context.ex#L289" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>update_object_raw(
+  <a href="#t:t/0">t</a>(),
+  <a href="BattleCity.html#t:object_keys/0">BattleCity.object_keys</a>(),
+  <a href="BattleCity.html#t:id/0">BattleCity.id</a>(),
+  <a href="#t:update_raw_fun/0">update_raw_fun</a>()
+) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="update_object_raw!/4">
+
+  <div class="detail-header">
+    <a href="#update_object_raw!/4" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">update_object_raw!(ctx, key, id, f)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/context.ex#L319" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>update_object_raw!(
+  <a href="#t:t/0">t</a>(),
+  <a href="BattleCity.html#t:object_keys/0">BattleCity.object_keys</a>(),
+  <a href="BattleCity.html#t:id/0">BattleCity.id</a>(),
+  <a href="#t:update_raw_fun/0">update_raw_fun</a>()
+) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+          </div>
+        </section>
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.23.0) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

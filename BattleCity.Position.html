@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.23.0">
+    <meta name="project" content="battle_city v0.1.8">
+
+    <title>BattleCity.Position — battle_city v0.1.8</title>
+    <link rel="stylesheet" href="dist/elixir-9f91ebe876dc01d67920.css" />
+
+    <script src="dist/sidebar_items-6eec8ba22c.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-60a0c9f10e9e52eae31f.js"></script>
+
+
+  </head>
+  <body data-type="modules">
+    <script>try { if(localStorage.getItem('night-mode') === 'true') document.body.className += ' night-mode'; } catch (e) { }</script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" id="search-list" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="readme.html" class="sidebar-projectName">
+battle_city
+      </a>
+      <strong class="sidebar-projectVersion">
+        v0.1.8
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+      <h1>
+BattleCity.Position <small class="app-vsn">(battle_city v0.1.8)</small>
+
+          <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/position.ex#L1" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
+
+      </h1>
+
+
+        <section id="moduledoc">
+<p>Position</p>
+        </section>
+
+
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+
+  <div class="summary-types summary">
+    <h2>
+      <a href="#types">Types</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:coordinate/0">coordinate()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:direction/0">direction()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:height/0">height()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:path/0">path()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:rx/0">rx()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:ry/0">ry()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:speed/0">speed()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:t/0">t()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:width/0">width()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:x/0">x()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#t:y/0">y()</a>
+
+  </div>
+
+</div>
+
+  </div>
+
+  <div class="summary-functions summary">
+    <h2>
+      <a href="#functions">Functions</a>
+    </h2>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#atom/0">atom()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#bullet_speed/0">bullet_speed()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#destination/2">destination(p, speed)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#div_even/1">div_even(rt)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>  iex&gt; Elixir.BattleCity.Position.div_even(24.1)
+  4
+  iex&gt; Elixir.BattleCity.Position.div_even(23.9)
+  2
+  iex&gt; Elixir.BattleCity.Position.div_even(32.1)
+  4
+  iex&gt; Elixir.BattleCity.Position.div_even(40.1)
+  6
+  iex&gt; Elixir.BattleCity.Position.div_even(39.9)
+  4</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#init/1">init(map \\ %{})</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#is_on_border/1">is_on_border(p)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#is_on_border_xy/1">is_on_border_xy(p)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#normalize/1">normalize(p)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#normalize_number/3">normalize_number(direction, n, x_or_y \\ nil)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>  iex&gt; Elixir.BattleCity.Position.normalize_number(:up, 2, :x)
+  2
+  iex&gt; Elixir.BattleCity.Position.normalize_number(:up, 3)
+  4
+  iex&gt; Elixir.BattleCity.Position.normalize_number(:down, 3)
+  2</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#objects/0">objects()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#quadrant/0">quadrant()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#real_quadrant/0">real_quadrant()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#real_width/0">real_width()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#size/0">size()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#speed/0">speed()</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#target/2">target(map, speed)</a>
+
+  </div>
+
+    <div class="summary-synopsis"><p>  iex&gt; Elixir.BattleCity.Position.target(%{direction: :right, rx: 0}, 2)
+  2
+  iex&gt; Elixir.BattleCity.Position.target(%{direction: :left, rx: 1}, 2)
+  0
+  iex&gt; Elixir.BattleCity.Position.target(%{direction: :up, ry: 3}, 2)
+  1</p></div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#target_path/2">target_path(map, atom)</a>
+
+  </div>
+
+</div>
+<div class="summary-row">
+  <div class="summary-signature">
+    <a href="#width/0">width()</a>
+
+  </div>
+
+</div>
+
+  </div>
+
+        </section>
+
+
+        <section id="types" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#types">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Types
+          </h1>
+          <div class="types-list">
+<section class="detail" id="t:coordinate/0">
+
+  <div class="detail-header">
+    <a href="#t:coordinate/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">coordinate()</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/position.ex#L36" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>coordinate() :: {<a href="#t:x/0">x</a>(), <a href="#t:y/0">y</a>()}</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:direction/0">
+
+  <div class="detail-header">
+    <a href="#t:direction/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">direction()</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/position.ex#L6" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>direction() :: :up | :down | :left | :right</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:height/0">
+
+  <div class="detail-header">
+    <a href="#t:height/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">height()</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/position.ex#L38" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>height() :: 0..2</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:path/0">
+
+  <div class="detail-header">
+    <a href="#t:path/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">path()</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/position.ex#L43" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>path() :: [<a href="#t:coordinate/0">coordinate</a>()]</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:rx/0">
+
+  <div class="detail-header">
+    <a href="#t:rx/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">rx()</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/position.ex#L34" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>rx() :: 0..192</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:ry/0">
+
+  <div class="detail-header">
+    <a href="#t:ry/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">ry()</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/position.ex#L35" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>ry() :: 0..192</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:speed/0">
+
+  <div class="detail-header">
+    <a href="#t:speed/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">speed()</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/position.ex#L31" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>speed() :: 1..10</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:t/0">
+
+  <div class="detail-header">
+    <a href="#t:t/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">t()</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/position.ex#L45" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>t() :: %BattleCity.Position{
+  direction: <a href="#t:direction/0">direction</a>(),
+  path: <a href="#t:path/0">path</a>(),
+  rt: rx_or_ry(),
+  rx: <a href="#t:rx/0">rx</a>(),
+  ry: <a href="#t:ry/0">ry</a>(),
+  t: x_or_y(),
+  x: <a href="#t:x/0">x</a>(),
+  y: <a href="#t:y/0">y</a>()
+}</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:width/0">
+
+  <div class="detail-header">
+    <a href="#t:width/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">width()</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/position.ex#L37" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>width() :: 0..2</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:x/0">
+
+  <div class="detail-header">
+    <a href="#t:x/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">x()</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/position.ex#L32" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>x() :: 0..24</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="t:y/0">
+
+  <div class="detail-header">
+    <a href="#t:y/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">y()</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/position.ex#L33" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>y() :: 0..24</pre>
+
+      </div>
+
+
+  </section>
+</section>
+
+          </div>
+        </section>
+
+        <section id="functions" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#functions">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Functions
+          </h1>
+          <div class="functions-list">
+<section class="detail" id="atom/0">
+
+  <div class="detail-header">
+    <a href="#atom/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">atom()</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/position.ex#L83" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="bullet_speed/0">
+
+  <div class="detail-header">
+    <a href="#bullet_speed/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">bullet_speed()</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/position.ex#L85" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="destination/2">
+
+  <div class="detail-header">
+    <a href="#destination/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">destination(p, speed)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/position.ex#L113" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>destination(<a href="#t:t/0">t</a>(), <a href="#t:speed/0">speed</a>()) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="div_even/1">
+
+  <div class="detail-header">
+    <a href="#div_even/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">div_even(rt)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/position.ex#L137" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>div_even(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()) :: x_or_y()</pre>
+
+      </div>
+
+<p>  iex&gt; Elixir.BattleCity.Position.div_even(24.1)
+  4
+  iex&gt; Elixir.BattleCity.Position.div_even(23.9)
+  2
+  iex&gt; Elixir.BattleCity.Position.div_even(32.1)
+  4
+  iex&gt; Elixir.BattleCity.Position.div_even(40.1)
+  6
+  iex&gt; Elixir.BattleCity.Position.div_even(39.9)
+  4</p>
+  </section>
+</section>
+<section class="detail" id="init/1">
+
+    <span id="init/0"></span>
+
+  <div class="detail-header">
+    <a href="#init/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">init(map \\ %{})</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/position.ex#L92" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>init(<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">map</a>()) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="is_on_border/1">
+
+  <div class="detail-header">
+    <a href="#is_on_border/1" class="detail-link" title="Link to this macro">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature">is_on_border(p)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/position.ex#L67" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="is_on_border_xy/1">
+
+  <div class="detail-header">
+    <a href="#is_on_border_xy/1" class="detail-link" title="Link to this macro">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this macro</span>
+    </a>
+    <h1 class="signature">is_on_border_xy(p)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/position.ex#L74" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+      <span class="note">(macro)</span>
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="normalize/1">
+
+  <div class="detail-header">
+    <a href="#normalize/1" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">normalize(p)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/position.ex#L145" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>normalize(<a href="#t:t/0">t</a>()) :: <a href="#t:t/0">t</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="normalize_number/3">
+
+    <span id="normalize_number/2"></span>
+
+  <div class="detail-header">
+    <a href="#normalize_number/3" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">normalize_number(direction, n, x_or_y \\ nil)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/position.ex#L158" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>normalize_number(<a href="#t:direction/0">direction</a>(), x_or_y(), :x | :y | nil) :: x_or_y()</pre>
+
+      </div>
+
+<p>  iex&gt; Elixir.BattleCity.Position.normalize_number(:up, 2, :x)
+  2
+  iex&gt; Elixir.BattleCity.Position.normalize_number(:up, 3)
+  4
+  iex&gt; Elixir.BattleCity.Position.normalize_number(:down, 3)
+  2</p>
+  </section>
+</section>
+<section class="detail" id="objects/0">
+
+  <div class="detail-header">
+    <a href="#objects/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">objects()</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/position.ex#L81" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="quadrant/0">
+
+  <div class="detail-header">
+    <a href="#quadrant/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">quadrant()</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/position.ex#L87" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="real_quadrant/0">
+
+  <div class="detail-header">
+    <a href="#real_quadrant/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">real_quadrant()</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/position.ex#L88" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="real_width/0">
+
+  <div class="detail-header">
+    <a href="#real_width/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">real_width()</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/position.ex#L89" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="size/0">
+
+  <div class="detail-header">
+    <a href="#size/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">size()</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/position.ex#L82" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="speed/0">
+
+  <div class="detail-header">
+    <a href="#speed/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">speed()</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/position.ex#L84" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+<section class="detail" id="target/2">
+
+  <div class="detail-header">
+    <a href="#target/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">target(map, speed)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/position.ex#L175" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>target(<a href="#t:t/0">t</a>(), <a href="#t:speed/0">speed</a>()) :: rx_or_ry()</pre>
+
+      </div>
+
+<p>  iex&gt; Elixir.BattleCity.Position.target(%{direction: :right, rx: 0}, 2)
+  2
+  iex&gt; Elixir.BattleCity.Position.target(%{direction: :left, rx: 1}, 2)
+  0
+  iex&gt; Elixir.BattleCity.Position.target(%{direction: :up, ry: 3}, 2)
+  1</p>
+  </section>
+</section>
+<section class="detail" id="target_path/2">
+
+  <div class="detail-header">
+    <a href="#target_path/2" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">target_path(map, atom)</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/position.ex#L185" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+      <h2>Specs</h2>
+      <div class="specs">
+
+          <pre>target_path(<a href="#t:t/0">t</a>(), <a href="#t:direction/0">direction</a>()) :: <a href="#t:path/0">path</a>()</pre>
+
+      </div>
+
+
+  </section>
+</section>
+<section class="detail" id="width/0">
+
+  <div class="detail-header">
+    <a href="#width/0" class="detail-link" title="Link to this function">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this function</span>
+    </a>
+    <h1 class="signature">width()</h1>
+
+      <a href="https://github.com/clszzyh/battle_city/blob/v0.1.8/lib/battle_city/position.ex#L86" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
+
+
+  </div>
+
+  <section class="docstring">
+
+
+  </section>
+</section>
+
+          </div>
+        </section>
+
+      <footer class="footer">
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.23.0) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>
