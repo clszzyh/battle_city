@@ -387,7 +387,7 @@ jobs:
         env:
           VERSION: ${{ steps.get_version.outputs.VERSION }}
       - name: Create Release
-        uses: actions/create-release@v1
+        uses: actions/create-release@v1.1.4
         with:
           tag_name: ${{ github.ref }}
           release_name: Release ${{ github.ref }}
