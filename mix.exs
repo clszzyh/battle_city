@@ -76,7 +76,7 @@ defmodule BattleCity.MixProject do
   defp deps do
     [
       {:jason, "~> 1.0"},
-      {:telemetry, "~> 0.4.0"},
+      {:telemetry, "~> 1.0.0"},
       {:dialyxir, "~> 1.0", only: [:dev, :test], runtime: false},
       {:credo, "~> 1.4", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.22", runtime: false}
